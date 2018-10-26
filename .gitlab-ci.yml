@@ -1,0 +1,6 @@
+copy:
+  script:
+  - sudo rm -r ~/../../var/www/html/*
+  - sudo cp public/* ~/../../var/www/html/
+  only:
+  - 7-setup-ci-cd-on-cloud-server 
