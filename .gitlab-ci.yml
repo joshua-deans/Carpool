@@ -2,8 +2,7 @@ copy:
   script:
   - sudo rm -r ~/../../var/www/html/carpool/*
   - sudo cp -r * ~/../../var/www/html/carpool/
-  - sudo chgrp -R www-data /var/www/html/carpool
-  - sudo chmod -R 775 /var/www/html/carpool/storage
   - sudo composer install
+
   only:
-  - 7-setup-ci-cd-on-cloud-server 
+  - 7-setup-ci-cd-on-cloud-server
