@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'PagesController@landing');
+
+Route::get('/login', 'PagesController@login_page');
+
+Route::get('/signup', 'PagesController@signup_page');

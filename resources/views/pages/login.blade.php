@@ -3,18 +3,18 @@
 @section('content')
     @include('inc.navbar_landing')
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="content">
-                    <h1>Carpool</h1>
-                    <h3>Commuting made easy</h3>
-                    <hr>
-                    <button class="btn btn-default btn-lg" action="#">Get Started!</button>
-                </div>
-            </div> <!-- /.col-lg-12 -->
-        </div> <!-- /.row-->
-    </div> <!-- /.container-fluid -->
+    <div class="container">
+        <form>
+            <h2>Login</h2>
+            <div class="form-group">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+    </div>
 
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
