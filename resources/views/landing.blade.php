@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('stylesheet')
+    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-    @include('inc.navbar_landing')
+@include('inc.navbar_landing')
 
     <div class="container-fluid">
         <div class="row">
