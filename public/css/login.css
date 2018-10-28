@@ -1,0 +1,25 @@
+form {
+  width: 300px;
+  display: inline-block;
+  margin-top: 10%;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 30px 30px 30px 30px;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+div.form-group {
+  color: white;
+}
+
+form h2 {
+  font-weight: bolder;
+  color: white;
+  font-family: serif;
+}
