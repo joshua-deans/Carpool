@@ -13,6 +13,6 @@
 
 Route::get('/', 'PagesController@landing');
 
-Route::get('/login', 'PagesController@login_page');
+Auth::routes();
 
-Route::get('/signup', 'PagesController@signup_page');
+Route::get('/home', 'HomeController@index')->name('home');
