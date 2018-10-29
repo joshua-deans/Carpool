@@ -44,6 +44,26 @@
             <input id="password-confirm" type="password" placeholder="Confirm Password"
                    class="form-control" name="password_confirmation" required>
         </div>
+        <div class="form-group">
+            <input id="birthday" type="date" placeholder="MM/DD/YYYY"
+                   class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
+                   name="birthday" required>
+            @if ($errors->has('birthday'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('birthday') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
+            <input id="phone#" type="tel" placeholder="Phone number"
+                   class="form-control{{ $errors->has('phone#') ? ' is-invalid' : '' }}"
+                   name="phone#" required>
+            @if ($errors->has('phone#'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('phone#') }}</strong>
+                </span>
+            @endif
+        </div>
         <button type="submit" class="btn btn-primary">
             {{ __('Register') }}
         </button>
