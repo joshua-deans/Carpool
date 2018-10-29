@@ -16,3 +16,5 @@ Route::get('/', 'PagesController@landing');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('user/{id}', 'PagesController@dashboard');
