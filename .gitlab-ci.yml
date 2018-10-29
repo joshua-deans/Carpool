@@ -1,3 +1,7 @@
+stages:
+    - copy
+    - load
+    
 copy:
   script:
   - sudo rm -r ~/../../var/www/html/carpool/*
