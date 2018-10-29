@@ -3,6 +3,7 @@ stages:
     - load
     
 copy:
+  stage: copy
   script:
   - sudo rm -r ~/../../var/www/html/carpool/*
   - sudo cp -r * ~/../../var/www/html/carpool/
@@ -10,6 +11,7 @@ copy:
   - 7-setup-ci-cd-on-cloud-server 
 
 load: 
+  stage: load
   script:
   - cd /var/www/html/carpool
   - sudo composer install
