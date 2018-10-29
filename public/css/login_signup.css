@@ -1,7 +1,7 @@
 form {
   width: 300px;
   display: inline-block;
-  margin-top: 10%;
+  margin-top: 8%;
   font-size: 14px;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 30px 30px 30px 30px;
@@ -9,9 +9,9 @@ form {
 
 body {
   background-size: cover;
-  background-position: center;
   min-height: 100vh;
   text-align: center;
+  background: url('../svg/road_background.jpg') center;
 }
 
 div.form-group {
