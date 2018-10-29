@@ -5,8 +5,8 @@ stages:
 copy:
   stage: copy
   script:
-  - sudo rm -r ~/../../var/www/html/carpool/*
-  - sudo cp -r * ~/../../var/www/html/carpool/
+  - sudo rm -R ~/../../var/www/html/carpool/*
+  - sudo cp -R * ~/../../var/www/html/carpool/
   only:
   - 7-setup-ci-cd-on-cloud-server 
 
