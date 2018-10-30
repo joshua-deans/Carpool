@@ -7,8 +7,10 @@
     <script src="{{ asset('js/location.js') }}"></script>
 @endsection
 
+@include('inc.navbar_signed_in')
+
 @section('content')
-    @include('inc.navbar_signed_in')
+
     <br>
     <div class="container">
         <div class="row">
