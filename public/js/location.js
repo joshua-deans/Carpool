@@ -2,7 +2,7 @@ alert("please enable browser location");
 var map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 49, lng: -123},
+        center: {lat: 49, lng: -123}, //default center around vancouver
         zoom: 11
     });
     if (navigator.geolocation) {
