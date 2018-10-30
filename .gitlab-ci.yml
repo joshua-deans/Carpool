@@ -17,5 +17,6 @@ load:
   - sudo composer install
   - sudo chgrp -R www-data /var/www/html/carpool
   - sudo chmod -R 775 /var/www/html/carpool/storage
+  - sudo php artisan migrate:fresh
   only: 
   - 7-setup-ci-cd-on-cloud-server 
