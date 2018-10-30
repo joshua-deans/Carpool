@@ -16,3 +16,5 @@ Route::get('/', 'PagesController@landing');
 Route::get('/login', 'PagesController@login_page');
 
 Route::get('/signup', 'PagesController@signup_page');
+
+Route::get('user/{id}', 'PagesController@dashboard');

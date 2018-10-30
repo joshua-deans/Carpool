@@ -15,6 +15,6 @@ div h3 {
 
 body {
   background-size: cover;
-  background: url('../svg/road_background.svg') center;
+  background: url('../svg/road_background.jpg') center;
   min-height: 100vh;
 }
