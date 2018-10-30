@@ -3,7 +3,6 @@
 @section('stylesheet')
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBuOiCTu4lSCitAlk-YxtZ_Aw6KRIqxU"></script>
     <script src="{{ asset('js/location.js') }}"></script>
 @endsection
 
@@ -41,6 +40,4 @@
     </div>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?v=weekly&key=
-AIzaSyC_EIWb_yAvbLmnjYU4qHxvzWlcGKU-jeA
-&callback=initMap"></script>
-@endsection
+AIzaSyC_EIWb_yAvbLmnjYU4qHxvzWlcGKU-jeA&libraries=places&callback=initMap"></script>
