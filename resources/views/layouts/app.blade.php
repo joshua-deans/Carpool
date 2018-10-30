@@ -18,7 +18,6 @@
 </head>
 <body>
     <div id="app">
-        @include('inc.navbar_landing')
         @yield('content')
         <script
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
