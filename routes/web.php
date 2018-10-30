@@ -17,6 +17,6 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 
-Route::get('/profile/{id}', 'PagesController@profile_page');
+Route::get('/profile', 'ProfileController@profile_page')->middleware('auth');
 
 Route::get('user/{id}', 'PagesController@dashboard');

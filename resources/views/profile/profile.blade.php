@@ -6,27 +6,54 @@
 
 @section('content')
     @include('inc.navbar_landing')
-    <?php
-        $user = DB::table('users')->where('id', $id)->first();
-    ?>
+
+    @php($user = Auth::user())
 
     <div class="container">
 
         <div class="profileHeader">
             <div class="col-md-4">
-                <img src="{{asset('imgs/emptyProfile.jpg')}}" class="profilePicture">
+                @if ($user->profilePicture)
+                    {{$user->profilePicture}}
+                @else
+                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
+                @endif
             </div>
             <div class="profileNameInfo col-md-6">
                 <h3>
                     Name:
                     <?php
-                        echo $user->name;
+                    echo $user->name
                     ?>
                 </h3>
                 <h3>
-                    Username:
+                    email:
                     <?php
-                        echo $user->email;
+                    echo $user->email;
+                    ?>
+                </h3>
+                <h3>
+                    phone:
+                    <?php
+                    echo $user->phone;
+                    ?>
+                </h3>
+                <h3>
+                    About:
+                    <?php
+                    echo $user->description;
+                    ?>
+                </h3>
+                <h3>
+                    Birthday:
+                    <?php
+                    echo $user->birthday;
+                    ?>
+                </h3>
+                <h3>
+                    Rating:
+                    <?php
+                    echo $user->avgRating;
                     ?>
                 </h3>
             </div>
