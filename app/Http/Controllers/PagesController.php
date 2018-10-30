@@ -18,6 +18,10 @@ class PagesController extends Controller
         return view('pages.signup');
     }
 
+    public function profile_page($id){
+        return view ('pages.profile', compact('id'));
+    }
+
     function dashboard($id)
     {
         return view('pages.dashboard');
