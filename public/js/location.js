@@ -1,41 +1,28 @@
-alert("In order to...please enable browser location");
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-var map, infoWindow;
-
-function setUpGeolocation() {
-    // Try HTML5 geolocation.
+alert("please enable browser location");
+var map
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 49, lng: -123},
+        zoom: 11
+    });
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            // infoWindow.setPosition(pos);
-            // infoWindow.setContent('Location found.');
-            // infoWindow.open(map);
+            var marker = new google.maps.Marker({
+                position: pos
+            });
+            marker.setMap(map)
             map.setCenter(pos);
-        }, function () {
-            // handleLocationError(true, infoWindow, map.getCenter());
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
-        // handleLocationError(false, infoWindow, map.getCenter());
+        handleLocationError(false, infoWindow, map.getCenter());
     }
-}
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 49.2827, lng: -123.0197},
-        zoom: 11,
-        disableDefaultUI: true
-    });
-    // infoWindow = new google.maps.InfoWindow;
-
-    setUpGeolocation();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
