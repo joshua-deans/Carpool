@@ -1,4 +1,4 @@
-@extends('layouts.webfront')
+@extends('layouts.app')
 
 @section('stylesheet')
     <link href="{{ asset('css/login_signup.css') }}" rel="stylesheet">

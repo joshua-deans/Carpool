@@ -1,4 +1,6 @@
-@extends('layouts.webfront')
+@extends('layouts.app')
+
+@include('inc.navbar_landing')
 
 @section('content')
 <div class="container">
