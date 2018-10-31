@@ -4,6 +4,8 @@
     <link href="{{ asset('css/login_signup.css') }}" rel="stylesheet">
 @endsection
 
+@include('inc.navbar_landing')
+
 @section('content')
 <div class="container">
     <form method="POST" action="{{ route('login') }}">
