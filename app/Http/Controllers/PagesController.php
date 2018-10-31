@@ -17,4 +17,8 @@ class PagesController extends Controller
     public function signup_page(){
         return view('pages.signup');
     }
+
+    public function commute_page(){
+        return view('pages.commute');
+    }
 }
