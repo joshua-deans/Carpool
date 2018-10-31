@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -11,9 +11,9 @@
         <div class="profileHeader">
             <div class="col-md-3">
                 @if ($user->profilePicture)
-                    <img src="{{URL::asset('images/'.$user->profilePicture)}}" class="profilePicture">
+                    <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
                 @else
-                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="profilePicture"
+                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="profilePicture">
                 @endif
             </div>
             <div class="profileNameInfo col-md-6">
