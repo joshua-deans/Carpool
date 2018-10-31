@@ -16,9 +16,13 @@
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
                 @endif
+
             </div>
             <div class="profileNameInfo col-md-6">
-                {!! Form::open(['action' => ['ProfileController@update', $user->id], 'method' => 'POST']) !!}
+                {!! Form::open(['action' => ['ProfileController@update', $user->id], 'method' => 'POST', 'files' => true]) !!}
+                <div class="form-group">
+                    {{Form::file('picture')}}
+                </div>
                 <div class="form-group">
                     {{Form::label('name', 'Name')}}
                     {{Form::text('name', '', ['class' => 'form-control'])}}

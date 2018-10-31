@@ -10,7 +10,7 @@
         <div class="profileHeader">
             <div class="col-md-4">
                 @if ($user->profilePicture)
-                    {{$user->profilePicture}}
+                    <img src="{{URL::asset('images/'.$user->profilePicture)}}">
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
                 @endif
