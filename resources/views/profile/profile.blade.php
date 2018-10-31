@@ -7,12 +7,13 @@
 @section('content')
     @include('inc.navbar_landing')
     <div class="container">
+        <div class="row">
         <div class="profileHeader">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @if ($user->profilePicture)
-                    <img src="{{URL::asset('images/'.$user->profilePicture)}}">
+                    <img src="{{URL::asset('images/'.$user->profilePicture)}}" class="profilePicture">
                 @else
-                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
+                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="profilePicture"
                 @endif
             </div>
             <div class="profileNameInfo col-md-6">
@@ -23,13 +24,13 @@
                     ?>
                 </h3>
                 <h3>
-                    email:
+                    Email:
                     <?php
                     echo $user->email;
                     ?>
                 </h3>
                 <h3>
-                    phone:
+                    Phone:
                     <?php
                     echo $user->phone;
                     ?>
@@ -53,6 +54,10 @@
                     ?>
                 </h3>
             </div>
+        </div>
+
+        </div>
+        <div class="row">
             <a href="profile/edit" class="btn btn-light">Edit</a>
         </div>
     </div>
