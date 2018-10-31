@@ -6,7 +6,9 @@
 
 @section('content')
     @include('inc.navbar_landing')
+
     <div class="container">
+
         <div class="profileHeader">
             <div class="col-md-4">
                 @if ($user->profilePicture)
@@ -16,44 +18,23 @@
                 @endif
             </div>
             <div class="profileNameInfo col-md-6">
-                <h3>
-                    Name:
-                    <?php
-                    echo $user->name
-                    ?>
-                </h3>
-                <h3>
-                    email:
-                    <?php
-                    echo $user->email;
-                    ?>
-                </h3>
-                <h3>
-                    phone:
-                    <?php
-                    echo $user->phone;
-                    ?>
-                </h3>
-                <h3>
-                    About:
-                    <?php
-                    echo $user->description;
-                    ?>
-                </h3>
-                <h3>
-                    Birthday:
-                    <?php
-                    echo $user->birthday;
-                    ?>
-                </h3>
-                <h3>
-                    Rating:
-                    <?php
-                    echo $user->avgRating;
-                    ?>
-                </h3>
+                {!! Form::open(['action' => ['ProfileController@update', $user->id], 'method' => 'POST']) !!}
+                <div class="form-group">
+                    {{Form::label('name', 'Name')}}
+                    {{Form::text('name', '', ['class' => 'form-control'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('phone', 'Phone#')}}
+                    {{Form::text('phone', '', ['class' => 'form-control'])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('about', 'About')}}
+                    {{Form::textarea('about', '', ['class' => 'form-control'])}}
+                </div>
+                {{Form::hidden('_method', 'PUT')}}
+                {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+                {!! Form::close() !!}
             </div>
-            <a href="profile/edit" class="btn btn-light">Edit</a>
         </div>
     </div>
 
