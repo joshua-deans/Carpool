@@ -19,4 +19,5 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/commute', 'PagesController@commute_page');
+
+Route::resource('Routes','RoutesController');
