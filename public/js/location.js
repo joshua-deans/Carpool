@@ -65,6 +65,7 @@ function initMap(){
         oriMarker.setPosition(oriPos);
         oriMarker.setVisible(true);
         oriMarker.setMap(map);
+        map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
         map.setZoom(9);
     });
 
@@ -77,6 +78,7 @@ function initMap(){
         destMarker.setPosition(destiPos);
         destMarker.setVisible(true);
         destMarker.setMap(map);
+        map.setCenter(new google.maps.LatLng(destiPos.lat, destiPos.lng));
         map.setZoom(9);
     });
 }
