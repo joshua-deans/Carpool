@@ -34,7 +34,7 @@
                 <br>
             </div>
             <div class="col-8">
-                <div id="map" style="height:450px;"></div>
+                <div id="map"></div>
             </div>
         </div>
     </div>
