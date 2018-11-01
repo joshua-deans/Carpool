@@ -67,6 +67,7 @@ function initMap(){
         oriMarker.setMap(map);
         map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
         map.setZoom(9);
+        
     });
 
     google.maps.event.addListener(destination_compele, 'place_changed', function(){
