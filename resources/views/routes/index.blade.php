@@ -6,7 +6,7 @@
 
 @section('content')
     @include('inc.navbar_landing')
-    <h1> My Routes</h1>
+    <div class="well"><h1> My Routes</h1></div>
     @if (count($routes) > 0)
         @foreach($routes as $route)
             <div class="well">
@@ -16,7 +16,7 @@
         @endforeach
         {{$routes->links()}}
     @else
-        <p> No routes found</p>
+        <div class="well"><p> No routes found</p></div>
     @endif
 
 @endsection
