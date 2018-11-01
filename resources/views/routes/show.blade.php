@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @include('inc.navbar_landing')
+    @include('inc.navbar_signed_in')
     <a href = "/Routes" class = "btn btn-default">Go Back</a>
     <h1> {{$routes->rideId}}</h1>
 
