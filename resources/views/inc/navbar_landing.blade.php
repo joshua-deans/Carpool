@@ -11,11 +11,8 @@
             <a class="navbar-brand" href="/">Carpool</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
 
             <ul class="nav navbar-nav">
                 <li><a href="#">About</a></li>
