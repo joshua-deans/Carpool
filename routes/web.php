@@ -18,3 +18,11 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+//Route::resource('profile', 'ProfileController');
+Route::get('/profile', 'ProfileController@index')->middleware('auth');
+Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
+Route::put('/profile/edit', 'ProfileController@update')->middleware('auth');
+
+
+Route::get('user/{id}', 'PagesController@dashboard');
