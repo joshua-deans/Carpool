@@ -21,4 +21,9 @@ class PagesController extends Controller
     public function commute_page(){
         return view('pages.commute');
     }
+
+    function dashboard($id)
+    {
+        return view('pages.dashboard');
+    }
 }

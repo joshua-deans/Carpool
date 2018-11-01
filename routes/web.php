@@ -13,8 +13,10 @@
 
 Route::get('/', 'PagesController@landing');
 
-Route::get('/login', 'PagesController@login_page');
+Auth::routes();
 
-Route::get('/signup', 'PagesController@signup_page');
+Route::get('/dashboard', 'DashboardController@index');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/commute', 'PagesController@commute_page');
