@@ -2,7 +2,7 @@
 carpool.me is a web application intended to make carpool arrangements easier. 
 It is built using the following technologies:
 * Laravel and PHP
-* MySQL
+* MySQL on separate DB server
 * Apache Server
 * Google Maps API
 * Google Cloud Platform
