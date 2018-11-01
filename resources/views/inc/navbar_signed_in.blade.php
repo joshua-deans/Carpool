@@ -18,6 +18,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/profile">Profile</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="{{url('/logout')}}">Sign Out</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

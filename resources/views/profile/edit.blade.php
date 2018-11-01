@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    @include('inc.navbar_landing')
+    @include('inc.navbar_signed_in')
+
 
     <div class="container">
 
