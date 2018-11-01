@@ -21,20 +21,20 @@ function initMap(){
                 position: pos,
                 icon: imageCurrent
             });
-            marker.setMap(map)
-            map.setCenter(pos)
+            marker.setMap(map);
+            map.setCenter(pos);
             /*marker.addListener('mouseover', function () { //hover the pin animation
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function () {
                     marker.setAnimation(null);
                 }, 1000)
             });*/
-        }, function () {
-            handleLocationError(true, map.getCenter());
+        },function(){
+            alert("location service is disabled by your browser for this website");
         });
     } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, map.getCenter());
+        alert(" Browser doesn't support Geolocation, we are unable to get your location");
     }
 
 
@@ -67,7 +67,7 @@ function initMap(){
         oriMarker.setMap(map);
         map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
         map.setZoom(9);
-        
+
     });
 
     google.maps.event.addListener(destination_compele, 'place_changed', function(){
@@ -84,11 +84,4 @@ function initMap(){
     });
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos){
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-}
 
