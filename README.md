@@ -16,6 +16,7 @@ It is built using the following technologies:
 ## Starting the server:
 * Project Name: CarpoolApplication
 * Project ID: carpoolapplication-219320
+* Project Host: Eric Tempest - EricTempest@gmail.com - ewtempes@sfu.ca
 * Start both webserver3 and mysqlserver1
 * Grab external ip
 * go to APIs and Services
