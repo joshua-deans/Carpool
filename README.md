@@ -14,6 +14,8 @@ It is built using the following technologies:
 * Able to view and edit profile information
 
 ## Starting the server:
+* Project Name: CarpoolApplication
+* Project ID: carpoolapplication-219320
 * Start both webserver3 and mysqlserver1
 * Grab external ip
 * go to APIs and Services
