@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/myroutes.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-    @include('inc.navbar_landing')
+    @include('inc.navbar_signed_in')
     <div class="well"><h1> My Routes</h1></div>
     @if (count($routes) > 0)
         @foreach($routes as $route)
