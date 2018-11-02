@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Carpool;
+use App\User;
+
+
 class RoutesController extends Controller
 {
     /**
@@ -47,7 +50,13 @@ class RoutesController extends Controller
     public function show($id)
     {
         $routes = Carpool::find($id);
-        return view('routes.show')->with('routes',$routes);
+        $passenger = User::find($routes->passID);
+        $driver = User::find($routes->driverID);
+        return view('routes.show')
+            ->with('routes',$routes)
+            ->with('passenger',$passenger)
+            ->with('driver',$driver);
+
     }
 
     /**
