@@ -19,11 +19,11 @@ It is built using the following technologies:
 * go to APIs and Services
 * Select Credentials
 * Click API Key
-* add Https://<external ip> to the "Accept requests from these HTTP referrers (websites)"
+* add Https://external ip to the "Accept requests from these HTTP referrers (websites)"
 * Wait up to 5 minutes for google to update the allowed urls
 
 ## Using the site:
 * Make sure you are using Https
-* go to https://<external ip>
+* go to https://external ip
 * accept the dangers of our self-signed certificate
 * Site should work
