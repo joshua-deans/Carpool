@@ -26,3 +26,6 @@ Route::put('/profile/edit', 'ProfileController@update')->middleware('auth');
 
 
 Route::get('user/{id}', 'PagesController@dashboard');
+
+
+Route::resource('Routes','RoutesController');
