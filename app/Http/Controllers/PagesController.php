@@ -18,10 +18,6 @@ class PagesController extends Controller
         return view('pages.signup');
     }
 
-    public function commute_page(){
-        return view('pages.commute');
-    }
-
     function dashboard($id)
     {
         return view('pages.dashboard');
