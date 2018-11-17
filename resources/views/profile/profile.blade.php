@@ -6,9 +6,9 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
-    <div class="container">
+    <div class="container profileHeader">
         <div class="row">
-        <div class="profileHeader">
+        {{--<div class="profileHeader">--}}
             <div class="col-md-3">
                 @if ($user->profilePicture)
                     <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
@@ -54,7 +54,7 @@
                     ?>
                 </h3>
             </div>
-        </div>
+        {{--</div>--}}
 
         </div>
         <div class="row">

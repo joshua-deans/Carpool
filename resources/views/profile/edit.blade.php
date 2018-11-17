@@ -8,9 +8,9 @@
     @include('inc.navbar_signed_in')
 
 
-    <div class="container">
+    <div class="container profileHeader">
 
-        <div class="profileHeader">
+        {{--<div class="profileHeader">--}}
             <div class="col-md-4">
                 @if ($user->profilePicture)
                     {{$user->profilePicture}}
@@ -40,7 +40,7 @@
                 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
             </div>
-        </div>
+        {{--</div>--}}
     </div>
 
     <script
