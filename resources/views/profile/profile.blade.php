@@ -6,9 +6,9 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
-    <div class="container">
+    <div class="container profileHeader">
         <div class="row">
-        <div class="profileHeader">
+        {{--<div class="profileHeader">--}}
             <div class="col-md-3">
                 @if ($user->profilePicture)
                     <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
@@ -53,12 +53,18 @@
                     echo $user->avgRating;
                     ?>
                 </h3>
+                @if ($user->vehicleId)
+                <h3>
+                    <a href="">Vehicle</a>
+                </h3>
+                @endif
             </div>
-        </div>
+        {{--</div>--}}
 
         </div>
         <div class="row">
             <a href="profile/edit" class="btn btn-light">Edit</a>
+            <a href="vehicle" class="btn btn-light">My Vehicle</a>
         </div>
     </div>
 
