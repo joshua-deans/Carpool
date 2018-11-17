@@ -1,16 +1,63 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vehicle.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
     @include('inc.navbar_signed_in')
-
+    <div class="container vehicleHeader">
+        <div class="row">
     @if($vehicle)
-        <h3>You have a vehicle</h3>
-        <h3>Display the vehicle information</h3>
-        <a href="vehicle/edit">Edit your vehicle</a>
+            <div class="col-md-3">
+                @if ($vehicle->picture)
+                    <img src="{{asset('images/'.$user->profilePicture)}}" class="vehiclePicture">
+                @else
+                    <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="vehiclePicture">
+                @endif
+            </div>
+        <div class="profileNameInfo col-md-6">
+            <h3>
+                Name:
+                <?php
+                echo $vehicle->name;
+                ?>
+            </h3>
+            <h3>
+                Make:
+                <?php
+                echo $vehicle->make;
+                ?>
+            </h3>
+            <h3>
+                model:
+                <?php
+                echo $vehicle->model;
+                ?>
+            </h3>
+            <h3>
+                Color:
+                <?php
+                echo $vehicle->color;
+                ?>
+            </h3>
+            <h3>
+                Year:
+                <?php
+                echo $vehicle->year;
+                ?>
+            </h3>
+            <h3>
+                Seats:
+                <?php
+                echo $vehicle->seats;
+                ?>
+            </h3>
+        </div>
+        </div>
+        <div class="row">
+            <a href="vehicle/edit" class="btn btn-light">Edit</a>
+        </div>
     @else
         <h3>Create your vehicle</h3>
         <div class="profileNameInfo col-md-6">
@@ -46,7 +93,6 @@
             {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
         </div>
-
     @endif
 
 @endsection
