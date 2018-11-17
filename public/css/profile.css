@@ -1,16 +1,22 @@
 .profilePicture {
-    height: 200px;
-    width: 200px;
-    border-radius: 10px;
-}
-
-.profileHeader {
-    padding:20px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 20px;
-    color: white;
-}
+      height: 200px;
+      width: 200px;
+      border-radius: 10px;
+  }
+.profilePicture {
+       height: 200px;
+       width: 200px;
+       border-radius: 10px;
+   }
 
 body {
+    background-size:cover;
     background: url('../svg/background.jpg') center;
+}
+
+.container{
+    margin-top:3%;
+    padding:20px;
+    color: white;
+    background: rgba(0,0,0,0.4);
 }
