@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('avgRating')->unsigned()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('vehicleId')->nullable()->references('vehicleId')->on('users');
             $table->rememberToken();
             $table->timestamps();
         });
