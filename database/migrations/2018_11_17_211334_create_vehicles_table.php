@@ -16,12 +16,12 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ownerId')->references('id')->on('users');
+            $table->string('name');
             $table->string('make');
             $table->string('model');
             $table->string('color');
             $table->integer('year');
             $table->integer('seats');
-            $table->string('trunkspace');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <link href="{{ asset('css/vehicle.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -28,7 +28,19 @@
             </div>
             <div class="form-group">
                 {{Form::label('model', 'model')}}
-                {{Form::textarea('model', '', ['class' => 'form-control'])}}
+                {{Form::text('model', '', ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('year', 'year')}}
+                {{Form::number('year', '', ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('color', 'color')}}
+                {{Form::text('color', '', ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('seats', 'seats')}}
+                {{Form::number('seats', '', ['class' => 'form-control'])}}
             </div>
             {{Form::hidden('_method', 'POST')}}
             {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}

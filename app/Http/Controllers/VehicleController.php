@@ -32,16 +32,21 @@ class VehicleController extends Controller
         $this->validate($request, array(
             'name' => 'required',
             'make' => 'required',
-            'model' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ));
         $user = auth()->user();
         $vehicle = new Vehicle();
         $vehicle->name= $request->input('name');
-        $vehicle->make= $request->input('model');
+        $vehicle->make= $request->input('make');
         $vehicle->model= $request->input('model');
+        $vehicle->color= $request->input('color');
+        $vehicle->year= $request->input('year');
+        $vehicle->seats= $request->input('seats');
+
         $vehicle->ownerId = $user->id;
         $vehicle->save();
-        return view('vehicle.index');
+        $user->vehicleId = $vehicle->id;
+        $user->save();
+        return view('vehicle.index')->with('vehicle', $vehicle);
     }
 
     /**
