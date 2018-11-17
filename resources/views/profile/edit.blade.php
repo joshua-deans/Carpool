@@ -29,7 +29,7 @@
                     {{Form::text('name', '', ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::label('phone', 'Phone#')}}
+                    {{Form::label('phone', 'Phone')}}
                     {{Form::text('phone', '', ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">

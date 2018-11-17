@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $updateUser = User::find($user->id);
         $updateUser->name = $request->input('name');
         $updateUser->description = $request->input('about');
-//        $updateUser->phone# = $request->input('phone');
+        $updateUser->phone = $request->input('phone');
 
         if($request->hasFile('picture')){
             $image= $request->file('picture');
