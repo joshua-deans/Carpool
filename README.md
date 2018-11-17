@@ -14,6 +14,10 @@ It is built using the following technologies:
 * Able to view and edit profile information
 
 ## Starting the server:
+* Project Name: CarpoolApplication
+* Project ID: carpoolapplication-219320
+* Project Host: Eric Tempest - EricTempest@gmail.com - ewtempes@sfu.ca
+* If server is on, just use external ip with https, otherwise:
 * Start both webserver3 and mysqlserver1
 * Grab external ip
 * go to APIs and Services
