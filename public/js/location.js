@@ -1,4 +1,13 @@
-var map
+var map;
+
+function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
+    $("#commute-form").submit(function (event) {
+        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
+            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
+        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+    });
+}
+
 function initMap(){
 //user location section
     map = new google.maps.Map(document.getElementById('map'), {
@@ -50,10 +59,12 @@ function initMap(){
         position: initialMarkerLocation,
         label:'S'
     });
+    var originPlaced = false;
     var destMarker = new google.maps.Marker({
         position: initialMarkerLocation,
         label:'D'
     });
+    var destPlaced = false;
 
     //event handlers
     google.maps.event.addListener(origin_compele, 'place_changed', function(){
@@ -67,7 +78,7 @@ function initMap(){
         oriMarker.setMap(map);
         map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
         map.setZoom(9);
-
+        originPlaced = true;
     });
 
     google.maps.event.addListener(destination_compele, 'place_changed', function(){
@@ -81,7 +92,10 @@ function initMap(){
         destMarker.setMap(map);
         map.setCenter(new google.maps.LatLng(destiPos.lat, destiPos.lng));
         map.setZoom(9);
+        destPlaced = true;
     });
+
+    submitEventListener(originPlaced, destPlaced, oriMarker, destMarker);
 }
 
 
