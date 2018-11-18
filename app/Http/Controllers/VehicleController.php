@@ -45,6 +45,13 @@ class VehicleController extends Controller
         $vehicle->seats= $request->input('seats');
         $vehicle->description = $request->input('description');
 
+        if($request->hasFile('picture')){
+            $image= $request->file('picture');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(200, 200)->save( public_path('images/' . $filename ) );
+            $vehicle->picture= $filename;
+        };
+
         $vehicle->ownerId = $user->id;
         $vehicle->save();
         $user->vehicleId = $vehicle->id;
