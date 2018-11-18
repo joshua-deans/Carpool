@@ -2,6 +2,7 @@
 
 @section('stylesheet')
     <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
+
 @endsection
 
 @include('inc.navbar_landing')
