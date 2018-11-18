@@ -18,7 +18,7 @@
             </div>
             <div class="profileNameInfo col-md-6">
                 <h3>
-                    Name is:
+                    Name:
                     <?php
                     echo $user->name
                     ?>

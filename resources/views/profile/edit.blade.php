@@ -6,7 +6,6 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
-    <h1>test</h1>
 
     <div class="container profileHeader">
         {{--<div class="profileHeader">--}}
@@ -33,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('about', 'About')}}
-                    {{Form::textarea('about', $user->about, ['class' => 'form-control'])}}
+                    {{Form::textarea('about', $user->description, ['class' => 'form-control'])}}
                 </div>
                 {{Form::hidden('_method', 'PUT')}}
                 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
