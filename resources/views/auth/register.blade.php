@@ -57,12 +57,12 @@
             @endif
         </div>
         <div class="form-group">
-            <input id="phone#" type="tel" placeholder="Phone number"
-                   class="form-control{{ $errors->has('phone#') ? ' is-invalid' : '' }}"
-                   name="phone#" required>
-            @if ($errors->has('phone#'))
+            <input id="phone" type="tel" placeholder="Phone number"
+                   class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                   name="phone" required>
+            @if ($errors->has('phone'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('phone#') }}</strong>
+                    <strong>{{ $errors->first('phone') }}</strong>
                 </span>
             @endif
         </div>

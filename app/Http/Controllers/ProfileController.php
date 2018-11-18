@@ -26,13 +26,14 @@ class ProfileController extends Controller
     public function update(Request $request){
         $this->validate($request, array(
             'name' => 'required',
+            'phone' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ));
         $user = auth()->user();
         $updateUser = User::find($user->id);
         $updateUser->name = $request->input('name');
         $updateUser->description = $request->input('about');
-//        $updateUser->phone# = $request->input('phone');
+        $updateUser->phone = $request->input('phone');
 
         if($request->hasFile('picture')){
             $image= $request->file('picture');
