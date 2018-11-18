@@ -7,13 +7,11 @@
 @section('content')
     @include('inc.navbar_signed_in')
 
-
-    <div class="container">
-
-        <div class="profileHeader">
+    <div class="container profileHeader">
+        {{--<div class="profileHeader">--}}
             <div class="col-md-4">
                 @if ($user->profilePicture)
-                    {{$user->profilePicture}}
+                    <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
                 @endif
@@ -26,21 +24,21 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('name', 'Name')}}
-                    {{Form::text('name', '', ['class' => 'form-control'])}}
+                    {{Form::text('name', $user->name, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('phone', 'Phone')}}
-                    {{Form::text('phone', '', ['class' => 'form-control'])}}
+                    {{Form::text('phone', $user->phone, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('about', 'About')}}
-                    {{Form::textarea('about', '', ['class' => 'form-control'])}}
+                    {{Form::textarea('about', $user->description, ['class' => 'form-control'])}}
                 </div>
                 {{Form::hidden('_method', 'PUT')}}
                 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
             </div>
-        </div>
+        {{--</div>--}}
     </div>
 
     <script

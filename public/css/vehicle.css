@@ -1,13 +1,13 @@
-.profilePicture {
-      height: 200px;
-      width: 200px;
-      border-radius: 10px;
-  }
-.profilePicture {
-       height: 200px;
-       width: 200px;
-       border-radius: 10px;
-   }
+.vehiclePicture {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}
+.vehiclePicture {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}
 
 body {
     background-size:cover;
