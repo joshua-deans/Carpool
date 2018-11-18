@@ -2,7 +2,7 @@ var map
 function initMap(){
 //user location section
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 49.28, lng: -123}, //default center around vancouver
+        center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11
     });
     var imageCurrent = {
@@ -39,9 +39,9 @@ function initMap(){
 
 
     //autocomplete section
-    var origin = document.getElementById("input-origin") //input box for origin
+    var origin = document.getElementById("input-origin"); //input box for origin
     var origin_compele = new google.maps.places.Autocomplete(origin);
-    var destination = document.getElementById("input-dest") //input box for destiation
+    var destination = document.getElementById("input-dest"); //input box for destiation
     var destination_compele = new google.maps.places.Autocomplete(destination);
 
     var initialMarkerLocation = {lat: 49.28, lng: -123};

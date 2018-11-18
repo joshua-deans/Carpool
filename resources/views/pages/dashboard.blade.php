@@ -16,13 +16,15 @@
                 <h3>Plan your Commute!</h3>
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-origin" placeholder="Origin">
+                        <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-dest" placeholder="Destination">
+                        <input type="text" class="form-control" id="input-dest" name="destination"
+                               placeholder="Destination">
                     </div>
                     <div class="form-group">
-                        <input type='text' class="form-control" id='datetimepicker' placeholder="Departure Time"/>
+                        <input type='text' class="form-control" id='datetimepicker' name="time"
+                               placeholder="Departure Time"/>
                     </div>
                     <div class="form-group">
                         <label class="radio-inline"><input type="radio" name="userType" value="passenger" checked>Passenger</label>
@@ -40,8 +42,10 @@
     <script>
         const fp = flatpickr("#datetimepicker", {
             enableTime: true,
+            altInput: true,
+            altFormat: "F j, Y h:i K",
             minDate: "today",
-            dateFormat: "m/d/Y h:i K",
+            dateFormat: "U"
         });
     </script>
     <script src="{{ asset('js/location.js') }}"></script>
