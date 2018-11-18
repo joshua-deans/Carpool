@@ -53,11 +53,6 @@
                     echo $user->avgRating;
                     ?>
                 </h3>
-                @if ($user->vehicleId)
-                <h3>
-                    <a href="">Vehicle</a>
-                </h3>
-                @endif
             </div>
         {{--</div>--}}
 

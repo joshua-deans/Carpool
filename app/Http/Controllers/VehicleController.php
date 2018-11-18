@@ -50,4 +50,25 @@ class VehicleController extends Controller
         return view('vehicle.index')->with('vehicle', $vehicle);
     }
 
+    public function edit(Request $request){
+        $user = auth()->user();
+        $vehicleId = $user->vehicleId;
+        $vehicle = Vehicle::find($vehicleId);
+        return view('vehicle.edit')->with('vehicle', $vehicle);
+    }
+
+    public function editVehicle(Request $request){
+        $user = auth()->user();
+        $vehicleId = $user->vehicleId;
+        $vehicle = Vehicle::find($vehicleId);
+        $vehicle->name= $request->input('name');
+        $vehicle->make= $request->input('make');
+        $vehicle->model= $request->input('model');
+        $vehicle->color= $request->input('color');
+        $vehicle->year= $request->input('year');
+        $vehicle->seats= $request->input('seats');
+        $vehicle->save();
+        return redirect('/vehicle')->with('vehicle', $vehicle);;
+    }
+
 }

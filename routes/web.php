@@ -26,6 +26,9 @@ Route::put('/profile/edit', 'ProfileController@update')->middleware('auth');
 
 Route::get('/vehicle', 'VehicleController@index')->middleware('auth');
 Route::POST('/vehicle/add', 'VehicleController@add')->middleware('auth');
+Route::get('/vehicle/edit', 'VehicleController@edit')->middleware('auth');
+Route::post('/vehicle/edit', 'VehicleController@editVehicle')->middleware('auth');
+
 
 
 
