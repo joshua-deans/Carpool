@@ -11,7 +11,7 @@
     @if($vehicle)
             <div class="col-md-3">
                 @if ($vehicle->picture)
-                    <img src="{{asset('images/'.$user->profilePicture)}}" class="vehiclePicture">
+                    <img src="{{asset('images/'.$vehicle->picture)}}" class="vehiclePicture">
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="vehiclePicture">
                 @endif
@@ -53,6 +53,13 @@
                 echo $vehicle->seats;
                 ?>
             </h3>
+            <h3>
+                Description:
+                <?php
+                echo $vehicle->description;
+                ?>
+            </h3>
+
         </div>
         </div>
         <div class="row">
@@ -88,6 +95,10 @@
             <div class="form-group">
                 {{Form::label('seats', 'seats')}}
                 {{Form::number('seats', '', ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('description', 'Description')}}
+                {{Form::textarea('description', '', ['class' => 'form-control'])}}
             </div>
             {{Form::hidden('_method', 'POST')}}
             {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}

@@ -38,6 +38,10 @@
                     {{Form::label('seats', 'seats')}}
                     {{Form::number('seats', $vehicle->seats, ['class' => 'form-control'])}}
                 </div>
+                <div class="form-group">
+                    {{Form::label('description', 'Description')}}
+                    {{Form::textarea('description', $vehicle->description, ['class' => 'form-control'])}}
+                </div>
                 {{Form::hidden('_method', 'POST')}}
                 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}

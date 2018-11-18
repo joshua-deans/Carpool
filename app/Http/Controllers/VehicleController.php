@@ -6,6 +6,7 @@ use App\Vehicle;
 use Illuminate\Http\Request;
 use App\Carpool;
 use App\User;
+use Image;
 
 
 class VehicleController extends Controller
@@ -42,12 +43,13 @@ class VehicleController extends Controller
         $vehicle->color= $request->input('color');
         $vehicle->year= $request->input('year');
         $vehicle->seats= $request->input('seats');
+        $vehicle->description = $request->input('description');
 
         $vehicle->ownerId = $user->id;
         $vehicle->save();
         $user->vehicleId = $vehicle->id;
         $user->save();
-        return view('vehicle.index')->with('vehicle', $vehicle);
+        return redirect('/vehicle')->with('vehicle', $vehicle);
     }
 
     public function edit(Request $request){
@@ -67,8 +69,17 @@ class VehicleController extends Controller
         $vehicle->color= $request->input('color');
         $vehicle->year= $request->input('year');
         $vehicle->seats= $request->input('seats');
+        $vehicle->description = $request->input('description');
+
+        if($request->hasFile('picture')){
+            $image= $request->file('picture');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(200, 200)->save( public_path('images/' . $filename ) );
+            $vehicle->picture= $filename;
+        };
+
         $vehicle->save();
-        return redirect('/vehicle')->with('vehicle', $vehicle);;
+        return redirect('/vehicle')->with('vehicle', $vehicle);
     }
 
 }

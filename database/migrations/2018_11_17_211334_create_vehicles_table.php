@@ -17,11 +17,13 @@ class CreateVehiclesTable extends Migration
             $table->increments('id');
             $table->integer('ownerId')->references('id')->on('users');
             $table->string('name');
-            $table->string('make');
-            $table->string('model');
-            $table->string('color');
-            $table->integer('year');
-            $table->integer('seats');
+            $table->string('make')->nullable();
+            $table->string('model')->nullable();
+            $table->string('color')->nullable();
+            $table->integer('year')->nullable();
+            $table->integer('seats')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
