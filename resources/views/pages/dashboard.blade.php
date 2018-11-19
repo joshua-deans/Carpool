@@ -15,8 +15,6 @@
             <div class="col-sm-4">
                 <h3>Plan your Commute!</h3>
                 {!! Form::open(['action' => 'RoutesController@store', 'id'=> 'commute-form',  'method' => 'POST']) !!}
-                {{--{!! Form::open(['id'=> 'commute-form']) !!}--}}
-                {{--<form id="commute-form">--}}
                     <div class="form-group">
                         {{ Form::text('origin', '', ['class'=>'form-control', 'id'=>'input-origin', 'placeholder'=>'Origin', 'required'=>''])  }}
                     </div>
