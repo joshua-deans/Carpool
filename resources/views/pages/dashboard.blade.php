@@ -10,12 +10,6 @@
 @include('inc.navbar_signed_in')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="alert alert-success alert-dismissible hide">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Indicates a successful or positive action.
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">

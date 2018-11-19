@@ -3,7 +3,7 @@
 }
 
 .container{
-    margin-top: 2%;
+    margin-top: 50px;
     color: white;
     background: rgba(0,0,0,0.4);
 }
@@ -12,8 +12,4 @@ body {
     background-size:cover;
     background: url('../svg/background.jpg') center;
 
-}
-
-.alert {
-    margin-bottom: 5px !important;
 }

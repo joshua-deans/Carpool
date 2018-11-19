@@ -9,14 +9,14 @@
     <div class="container profileHeader">
         <div class="row">
         {{--<div class="profileHeader">--}}
-            <div class="col-md-3">
+            <div class="col-md-5">
                 @if ($user->profilePicture)
                     <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="profilePicture">
                 @endif
             </div>
-            <div class="profileNameInfo col-md-6">
+            <div class="profileNameInfo col-md-7">
                 <h3>
                     Name:
                     <?php
@@ -57,9 +57,10 @@
         {{--</div>--}}
 
         </div>
-        <div class="row">
-            <a href="profile/edit" class="btn btn-light">Edit</a>
-            <a href="vehicle" class="btn btn-light">My Vehicle</a>
+        <br><br>
+        <div class="row text-center">
+            <a href="profile/edit" class="btn btn-primary btn-lg profileButton">Edit</a>
+            <a href="vehicle" class="btn btn-primary btn-lg profileButton">My Vehicle</a>
         </div>
     </div>
 

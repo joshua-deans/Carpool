@@ -9,20 +9,24 @@
 
     <div class="container profileHeader">
         {{--<div class="profileHeader">--}}
-            <div class="col-md-4">
+        <div class="col-md-5">
                 @if ($user->profilePicture)
                     <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
                 @else
                     <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" style="height: 200px; width: 200px;">
                 @endif
+            <br>
+            {!! Form::open(['action' => ['ProfileController@update', $user->id], 'method' => 'POST', 'files' => true]) !!}
+            <br>
+            <div class="form-group">
+                {{Form::file('picture')}}
+            </div>
+            <br>
 
             </div>
-            <div class="profileNameInfo col-md-6">
-                {!! Form::open(['action' => ['ProfileController@update', $user->id], 'method' => 'POST', 'files' => true]) !!}
-                <div class="form-group">
-                    {{Form::file('picture')}}
-                </div>
-                <div class="form-group">
+        <div class="profileNameInfo col-md-7">
+
+            <div class="form-group">
                     {{Form::label('name', 'Name')}}
                     {{Form::text('name', $user->name, ['class' => 'form-control'])}}
                 </div>
@@ -35,12 +39,14 @@
                     {{Form::textarea('about', $user->description, ['class' => 'form-control'])}}
                 </div>
                 {{Form::hidden('_method', 'PUT')}}
-                {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+            {{Form::submit('Submit', ['class'=>'btn btn-primary btn'])}}
                 {!! Form::close() !!}
+
             </div>
         {{--</div>--}}
-    </div>
 
+    </div>
+    <br>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

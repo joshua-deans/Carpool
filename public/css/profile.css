@@ -1,13 +1,18 @@
 .profilePicture {
-      height: 200px;
-      width: 200px;
-      border-radius: 10px;
-  }
-.profilePicture {
-       height: 200px;
-       width: 200px;
-       border-radius: 10px;
-   }
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.profileHeader {
+    max-width: 700px;
+}
+
+.profileButton {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 120px;
+}
 
 body {
     background-size:cover;
@@ -15,8 +20,8 @@ body {
 }
 
 .container{
-    margin-top:3%;
-    padding:20px;
+    margin-top: 50px;
+    padding: 25px;
     color: white;
     background: rgba(0,0,0,0.4);
 }
