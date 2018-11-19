@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="{{ asset('css/admin-dashboard.css') }}" rel="stylesheet">
 @endsection
 
 @include('inc.navbar_admin')
 
 @section('content')
 
+    <div class="container">
 
+    </div>
 
 @endsection
