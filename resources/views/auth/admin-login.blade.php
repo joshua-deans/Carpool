@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('admin.login.submit') }}">
+        <form method="POST" action="/admin/login">
             @csrf
             <h2>Administrator Login</h2>
             <div class="form-group">

@@ -1,6 +1,7 @@
 <?php
-//Admin login components were inspired by a tutorial: https://medium.freecodecamp.org/multiple-authentication-in-laravel-5-6-admin-and-user-3b3efe6da999
-
+//Admin login components were inspired by a tutorials:
+//https://medium.freecodecamp.org/multiple-authentication-in-laravel-5-6-admin-and-user-3b3efe6da999
+//https://www.youtube.com/watch?v=P8T3MjZPDdI
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class AdminLoginController extends Controller
     {
         return view('auth.admin-login');
     }
+
     protected function guard(){
         return Auth::guard('admin');
     }
@@ -28,7 +30,7 @@ class AdminLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard';
+    protected $redirectTo = '/admin/';
     /**
      * Create a new controller instance.
      *
