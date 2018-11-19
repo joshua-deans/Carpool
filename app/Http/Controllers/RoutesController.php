@@ -22,8 +22,10 @@ class RoutesController extends Controller
      */
     public function index()
     {
-        $routes = Carpool::orderBy('carpoolDateTime')->paginate(1);
-        return view('routes.index')->with('routes',$routes);
+        $user = auth()->user();
+        $user_id = $user->id;
+        $routes = Carpool::orderBy('carpoolDateTime')->paginate(2);
+        return view('routes.index')->with('routes',$routes)->with('user_id',$user_id);
     }
 
     /**

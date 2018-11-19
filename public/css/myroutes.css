@@ -1,6 +1,16 @@
-#route_list{
+#left{
     margin-left: 10%;
     margin-right: 10%;
+    float:left;
+    width:75%;
+    overflow:hidden;
+}
+#right{
+    margin-left: 10%;
+    margin-right: 10%;
+    float:left;
+    width:25%;
+    overflow:hidden;
 }
 
 body {
