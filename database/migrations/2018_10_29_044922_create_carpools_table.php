@@ -16,13 +16,16 @@ class CreateCarpoolsTable extends Migration
         Schema::create('carpools', function (Blueprint $table) {
             $table->increments('rideId');
             $table->integer('driverID')->unsigned();
-            $table->integer('passID')->unsigned();
+            $table->integer('passID')->unsigned()->nullable();
             $table->foreign('driverID')->references('id')->on('users');
             $table->foreign('passID')->references('id')->on('users');
-            $table->dateTime('carpoolDateTime');
+            $table->bigInteger('carpoolDateTime');
             $table->integer('peopleCap');
             $table->integer('peopleCur');
             $table->text('coords');
+            $table->text('description')->nullable();
+            $table->text('start_name')->nullable();
+            $table->text('end_name')->nullable();
             $table->timestamps();
         });
     }

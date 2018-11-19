@@ -14,24 +14,22 @@
         <div class="row">
             <div class="col-sm-4">
                 <h3>Plan your Commute!</h3>
-                <form>
+                {!! Form::open(['action' => 'RoutesController@store', 'id'=> 'commute-form',  'method' => 'POST']) !!}
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin">
+                        {{ Form::text('origin', '', ['class'=>'form-control', 'id'=>'input-origin', 'placeholder'=>'Origin', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-dest" name="destination"
-                               placeholder="Destination">
+                        {{ Form::text('destination', '', ['class'=>'form-control', 'id'=>'input-dest', 'placeholder'=>'Destination', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
-                        <input type='text' class="form-control" id='datetimepicker' name="time"
-                               placeholder="Departure Time"/>
+                        {{ Form::text('time', '', ['class'=>'form-control', 'id'=>'datetimepicker', 'placeholder'=>'Departure Time', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
-                        <label class="radio-inline"><input type="radio" name="userType" value="passenger" checked>Passenger</label>
-                        <label class="radio-inline"><input type="radio" name="userType" value="driver">Driver</label>
+                        <label class="radio-inline">{{ Form::radio('userType', 'passenger', true) }} Passenger </label>
+                        <label class="radio-inline">{{ Form::radio('userType', 'driver') }} Driver </label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                {{ Form::submit('Submit', ['class'=>'btn btn-primary']) }}
+                {!! Form::close() !!}
                 <br>
             </div>
             <div class="col-8">
