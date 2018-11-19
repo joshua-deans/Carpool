@@ -13,7 +13,8 @@ function initMap(){
 //user location section
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
-        zoom: 11
+        zoom: 11,
+        disableDefaultUI: true
     });
 
     var imageCurrent = {
@@ -34,12 +35,6 @@ function initMap(){
             });
             marker.setMap(map);
             map.setCenter(pos);
-            /*marker.addListener('mouseover', function () { //hover the pin animation
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    marker.setAnimation(null);
-                }, 1000)
-            });*/
         },function(){
             alert("Location service is disabled by your browser for this website");
         });
@@ -75,11 +70,17 @@ function initMap(){
             lat: origin_places.geometry.location.lat(),
             lng: origin_places.geometry.location.lng()
         };
+        markerBounds = new google.maps.LatLngBounds();
+        if (destPlaced) {
+            markerBounds.extend(destMarker.getPosition());
+        }
         oriMarker.setPosition(oriPos);
         oriMarker.setVisible(true);
         oriMarker.setMap(map);
-        map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
-        map.setZoom(9);
+        map.fitBounds(markerBounds.extend(oriMarker.getPosition()));
+        if (!destPlaced) {
+            map.setZoom(14);
+        }
         originPlaced = true;
     });
 
@@ -89,11 +90,17 @@ function initMap(){
             lat: destination_places.geometry.location.lat(),
             lng: destination_places.geometry.location.lng()
         };
+        markerBounds = new google.maps.LatLngBounds();
+        if (originPlaced) {
+            markerBounds.extend(oriMarker.getPosition());
+        }
         destMarker.setPosition(destiPos);
         destMarker.setVisible(true);
         destMarker.setMap(map);
-        map.setCenter(new google.maps.LatLng(destiPos.lat, destiPos.lng));
-        map.setZoom(9);
+        map.fitBounds(markerBounds.extend(destMarker.getPosition()));
+        if (!originPlaced) {
+            map.setZoom(14);
+        }
         destPlaced = true;
     });
 
