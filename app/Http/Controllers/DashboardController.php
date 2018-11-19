@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Carpool;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        //return view('pages.dashboard');
+        $routes = Carpool::orderBy('carpoolDateTime')->paginate(2);
+        return view('pages.dashboard')->with('routes',$routes);
     }
 }

@@ -30,12 +30,44 @@
                         <label class="radio-inline"><input type="radio" name="userType" value="passenger" checked>Passenger</label>
                         <label class="radio-inline"><input type="radio" name="userType" value="driver">Driver</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route">Submit</button>
                 </form>
                 <br>
             </div>
             <div class="col-8">
                 <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="route" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    My routes
+                    @if (count($routes)>0)
+                        @foreach($routes as $route)
+                            <div class="popwindow">
+                                <h3><a href="/Routes/{{$route->rideID}}">route id: {{$route->rideID}}</a></h3>
+                                <small>date time:{{$route->carpoolDateTime}}</small>
+                            </div>
+                        @endforeach
+                        {{$routes->links()}}
+                    @else
+                    <div class="popwindow"><p>No routes found</p></div>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
