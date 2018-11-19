@@ -23,9 +23,9 @@ class CreateCarpoolsTable extends Migration
             $table->integer('peopleCap');
             $table->integer('peopleCur');
             $table->text('coords');
-            $table->text('description');
-            $table->text('start_name');
-            $table->text('end_name');
+            $table->text('description')->nullable();
+            $table->text('start_name')->nullable();
+            $table->text('end_name')->nullable();
             $table->timestamps();
         });
     }
