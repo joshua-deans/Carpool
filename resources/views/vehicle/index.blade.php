@@ -6,6 +6,7 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
+    @include('inc.messages')
     <div class="container vehicleHeader">
         <div class="row">
     @if($vehicle)
@@ -104,6 +105,7 @@
             {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
         </div>
+    </div>
     @endif
 
 @endsection

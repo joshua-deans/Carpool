@@ -6,7 +6,7 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
-
+    @include('inc.messages')
     <div class="container profileHeader">
         {{--<div class="profileHeader">--}}
             <div class="col-md-4">

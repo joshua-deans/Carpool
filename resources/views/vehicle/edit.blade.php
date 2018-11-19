@@ -6,6 +6,7 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
+    @include('inc.messages')
     <div class="container vehicleHeader">
         <div class="row">
             <h3>Edit your vehicle</h3>
@@ -46,5 +47,7 @@
                 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
             </div>
+        </div>
+    </div>
 
 @endsection
