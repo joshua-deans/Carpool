@@ -34,6 +34,9 @@ class VehicleController extends Controller
         $this->validate($request, array(
             'name' => 'required',
             'make' => 'required',
+            'model' => 'required',
+            'seats' => 'required|integer|max:10',
+            'year' => 'integer|max:2020'
         ));
         $user = auth()->user();
         $vehicle = new Vehicle();
@@ -67,6 +70,14 @@ class VehicleController extends Controller
     }
 
     public function editVehicle(Request $request){
+        $this->validate($request, array(
+            'name' => 'required',
+            'make' => 'required',
+            'model' => 'required',
+            'seats' => 'required|integer|max:10',
+            'year' => 'integer|max:2020'
+        ));
+
         $user = auth()->user();
         $vehicleId = $user->vehicleId;
         $vehicle = Vehicle::find($vehicleId);

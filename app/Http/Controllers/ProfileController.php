@@ -26,7 +26,7 @@ class ProfileController extends Controller
     public function update(Request $request){
         $this->validate($request, array(
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|integer|max:9999999999',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ));
         $user = auth()->user();

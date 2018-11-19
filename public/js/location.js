@@ -1,5 +1,6 @@
 var map;
 
+
 function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
         var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
@@ -14,6 +15,7 @@ function initMap(){
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11
     });
+
     var imageCurrent = {
         url: "../svg/dot_316742.png", // url
         scaledSize: new google.maps.Size(30,30), // scaled size
@@ -39,11 +41,11 @@ function initMap(){
                 }, 1000)
             });*/
         },function(){
-            alert("location service is disabled by your browser for this website");
+            alert("Location service is disabled by your browser for this website");
         });
     } else {
         // Browser doesn't support Geolocation
-        alert(" Browser doesn't support Geolocation, we are unable to get your location");
+        alert("Browser doesn't support Geolocation, we are unable to get your location");
     }
 
 
