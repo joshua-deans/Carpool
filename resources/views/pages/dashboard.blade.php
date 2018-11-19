@@ -16,21 +16,21 @@
                 <h3>Plan your Commute!</h3>
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin">
+                        <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin" required="required">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="input-dest" name="destination"
-                               placeholder="Destination">
+                               placeholder="Destination" required="required">
                     </div>
                     <div class="form-group">
                         <input type='text' class="form-control" id='datetimepicker' name="time"
-                               placeholder="Departure Time"/>
+                               placeholder="Departure Time" required="required">
                     </div>
                     <div class="form-group">
-                        <label class="radio-inline"><input type="radio" name="userType" value="passenger" checked>Passenger</label>
-                        <label class="radio-inline"><input type="radio" name="userType" value="driver">Driver</label>
+                        <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
+                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                     </div>
-                    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route">Submit</button>
+                    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route" id="submitChange">Submit</button>
                 </form>
                 <br>
             </div>
@@ -45,12 +45,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Matching Routes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div id="myroutes" class="modal-body">
                     My routes
                     @if (count($routes)>0)
                         @foreach($routes as $route)

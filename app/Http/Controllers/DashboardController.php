@@ -24,7 +24,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //return view('pages.dashboard');
         $routes = Carpool::orderBy('carpoolDateTime')->paginate(2);
         return view('pages.dashboard')->with('routes',$routes);
     }

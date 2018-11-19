@@ -1,5 +1,15 @@
 var map;
 
+document.getElementById("pass").addEventListener("click", function(){
+    document.getElementById("submitChange").type="button";
+    document.getElementById("submitChange").dataset.target = "#route";
+});
+
+document.getElementById("driv").addEventListener("click", function(){
+    document.getElementById("submitChange").type="submit";
+    document.getElementById("submitChange").dataset.target = "";
+});
+
 
 function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
