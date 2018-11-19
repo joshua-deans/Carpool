@@ -7,8 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endsection
 
-@include('inc.navbar_signed_in')
+@include('inc.navbar_admin')
 
 @section('content')
-<h3>Admin</h3>
+
+
+
 @endsection

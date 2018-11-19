@@ -16,7 +16,7 @@ Route::get('/', 'PagesController@landing');
 Auth::routes();
 
 Route::prefix('admin')->group(function(){
-    Route::get('/login', 'Auth\AdminLoginController@showLoginForm');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login');
     Route::get('/', 'AdminController@index');
 

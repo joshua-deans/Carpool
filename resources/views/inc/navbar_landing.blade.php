@@ -25,7 +25,7 @@
 
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/login">{{ __('Admin') }}</a>
+                        <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Admin') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
