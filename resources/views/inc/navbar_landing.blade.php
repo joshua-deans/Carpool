@@ -12,12 +12,6 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <!-- Left Side Of Navbar -->
-
-            <ul class="nav navbar-nav">
-                <li><a href="#">About</a></li>
-                <li><a href="#">How it works</a></li>
-            </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

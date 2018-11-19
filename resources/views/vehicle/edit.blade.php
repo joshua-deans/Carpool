@@ -8,9 +8,8 @@
     @include('inc.navbar_signed_in')
     @include('inc.messages')
     <div class="container vehicleHeader">
-        <div class="row">
             <h3>Edit your vehicle</h3>
-            <div class="profileNameInfo col-md-6">
+        <div class="profileNameInfo col-md-12">
                 {!! Form::open(['action' => 'VehicleController@edit', 'method' => 'POST', 'files' => true]) !!}
                 <div class="form-group">
                     {{Form::file('picture')}}
@@ -28,15 +27,15 @@
                     {{Form::text('model', $vehicle->model, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::label('year', 'year')}}
+                    {{Form::label('year', 'Year')}}
                     {{Form::number('year', $vehicle->year, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::label('color', 'color')}}
+                    {{Form::label('color', 'Color')}}
                     {{Form::text('color', $vehicle->color, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::label('seats', 'seats')}}
+                    {{Form::label('seats', 'Seats')}}
                     {{Form::number('seats', $vehicle->seats, ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group">
@@ -44,9 +43,8 @@
                     {{Form::textarea('description', $vehicle->description, ['class' => 'form-control'])}}
                 </div>
                 {{Form::hidden('_method', 'POST')}}
-                {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+            {{Form::submit('Submit', ['class'=>'btn btn-primary btn-lg'])}}
                 {!! Form::close() !!}
-            </div>
         </div>
     </div>
 
