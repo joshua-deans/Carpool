@@ -33,7 +33,7 @@ class RoutesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -44,7 +44,16 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carpool = new Carpool;
+        $carpool->driverID = auth()->user()->id;
+        $carpool->passID = null;
+        $carpool->carpoolDateTime = $request->input('time');
+        $carpool->peopleCap = 0;
+        $carpool->peopleCur = 0;
+        $carpool->coords = $request->input('locJSON');
+        $carpool->save();
+
+        return redirect('/dashboard');
     }
 
     /**
