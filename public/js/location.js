@@ -1,6 +1,5 @@
 var map;
 
-
 function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
         var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
