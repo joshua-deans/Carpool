@@ -30,7 +30,8 @@ class ProfileController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ));
         $user = auth()->user();
-        $updateUser = User::find($user->id);
+        $updateUser = $user;
+
         $updateUser->name = $request->input('name');
         $updateUser->description = $request->input('about');
         $updateUser->phone = $request->input('phone');
