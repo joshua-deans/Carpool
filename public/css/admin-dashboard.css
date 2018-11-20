@@ -2,19 +2,38 @@ body {
     background-size: cover;
     background: url('../svg/admin-background.jpg') center;
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+
+
 }
 
 .container {
-    background-color: rgba(234, 235, 235, 0.7);
+    background-color: rgba(234, 235, 235, 0.5);
     padding: 10px 10px 10px 10px;
     margin-top: 8vh;
-    width: 280px;
-
 }
 
-h3 {
-    font-family: "Arial Black", Gadget, sans-serif;
-    margin: 0 0 0 0;
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:nth-child(odd){background-color: #ffffff;}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+
 

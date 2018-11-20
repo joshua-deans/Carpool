@@ -2,22 +2,33 @@
 
 @section('stylesheet')
     <link href="{{ asset('css/admin-dashboard.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 @endsection
 
 @include('inc.navbar_admin')
 
 @section('content')
     <div class="container">
-        <div class="list-group">
-            @if(count($members) > 0)
+        @if(count($members) > 0)
+            <table>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
                 @foreach($members as $members)
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">{{$members->email}}</a>
+                    <tr>
+                        <td>{{$members->id}}</td>
+                        <td>{{$members->name}}</td>
+                        <td>{{$members->email}}</td>
+                        <td><i class="fas fa-trash"></i></td>
+                    </tr>
                 @endforeach
-            @else
-
-            @endif
-
-        </div>
+            </table>
+        @else
+            <h3>No members exist</h3>
+        @endif
     </div>
 
 @endsection
