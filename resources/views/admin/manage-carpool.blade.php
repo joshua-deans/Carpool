@@ -15,20 +15,24 @@
                     <th>Ride ID</th>
                     <th>Driver</th>
                     <th>Passengers</th>
-                    <th>Capacity</th>
                     <th>Scheduled Time</th>
                     <th>Action</th>
                 </tr>
                 @foreach($carpools as $carpools)
                     <tr>
                         <td>{{$carpools->rideId}}</td>
-                        <td>{{$carpools->driverID}}</td>
-                        <td>{{$carpools->peopleCur}}</td>
-                        <td>{{$carpools->peopleCap}}</td>
+                        <td>{{$driverNames[$carpools->driverID]}}</td>
+                        <td>
+                            @if($passengerNames[$carpools->passID] != "")
+                                {{$passengerNames[$carpools->passID]}}
+                            @else
+                                {{'None'}}
+                            @endif
+                        </td>
                         <td>{{$carpools->carpoolDateTime}}</td>
                         <td>
 
-                            {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpools->id], 'method' => 'post']) !!}
+                            {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpools->rideId], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
