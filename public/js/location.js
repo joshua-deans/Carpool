@@ -1,5 +1,13 @@
 var map;
 
+function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
+    $("#commute-form").submit(function (event) {
+        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
+            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
+        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+    });
+}
+
 document.getElementById("pass").addEventListener("click", function(){
     document.getElementById("submitChange").type="button";
     document.getElementById("submitChange").dataset.target = "#route";
@@ -10,17 +18,9 @@ document.getElementById("driv").addEventListener("click", function(){
     document.getElementById("submitChange").dataset.target = "";
 });
 
-
-function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
-    $("#commute-form").submit(function (event) {
-        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
-            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
-        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
-    });
-}
-
 function initMap(){
 //user location section
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11
@@ -35,6 +35,7 @@ function initMap(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
+
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -109,5 +110,3 @@ function initMap(){
 
     submitEventListener(originPlaced, destPlaced, oriMarker, destMarker);
 }
-
-

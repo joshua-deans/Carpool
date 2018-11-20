@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <h3>Plan your Commute!</h3>
-                <form>
+                {!!Form::open(['action'=>'RoutesController@store','id'=>"commute-form",'method'=>"POST"])!!}
                     <div class="form-group">
                         <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin" required="required">
                     </div>
@@ -31,7 +31,7 @@
                         <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                     </div>
                     <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route" id="submitChange">Submit</button>
-                </form>
+                {!! Form::close() !!}
                 <br>
             </div>
             <div class="col-8">
@@ -40,17 +40,16 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="route" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="route" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Matching Routes</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="myroutes" class="modal-body">
+                <div class="modal-body">
                     My routes
                     @if (count($routes)>0)
                         @foreach($routes as $route)
@@ -61,7 +60,7 @@
                         @endforeach
                         {{$routes->links()}}
                     @else
-                    <div class="popwindow"><p>No routes found</p></div>
+                        <div class="popwindow"><p>No routes found</p></div>
                     @endif
                 </div>
                 <div class="modal-footer">
