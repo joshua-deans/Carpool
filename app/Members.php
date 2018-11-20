@@ -10,5 +10,4 @@ class Members extends Model
 
     protected $primaryKey = 'id';
 
-
 }

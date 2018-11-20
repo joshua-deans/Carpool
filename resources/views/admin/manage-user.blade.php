@@ -22,7 +22,13 @@
                         <td>{{$members->id}}</td>
                         <td>{{$members->name}}</td>
                         <td>{{$members->email}}</td>
-                        <td><i class="fas fa-trash"></i></td>
+                        <td>
+
+                            {!! Form::open(['action' => ['AdminRemoveController@destroy', $members->id], 'method' => 'post']) !!}
+                                {{Form::hidden('_method', 'delete')}}
+                                {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
             </table>
