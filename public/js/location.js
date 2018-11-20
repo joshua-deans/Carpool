@@ -7,7 +7,6 @@ function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
         $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
     });
 }
-
 document.getElementById("pass").addEventListener("click", function(){
     document.getElementById("submitChange").type="button";
     document.getElementById("submitChange").dataset.target = "#route";
@@ -20,7 +19,6 @@ document.getElementById("driv").addEventListener("click", function(){
 
 function initMap(){
 //user location section
-
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11
