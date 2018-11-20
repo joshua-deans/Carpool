@@ -14,14 +14,17 @@ class CreateDriversTable extends Migration
     public function up()
     {
         Schema::create('drivers', function (Blueprint $table) {
-            $table->integer('id')->unsigned();;
+            $table->integer('id')->unsigned();
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('licenseStatus');
-            $table->binary('carPic')->nullable();
-            $table->string('carModel');
-            $table->integer('carCapacity')->unsigned();
-//            driver(userID: integer, licenseStatus:varchar(15), carPic: blob, carModel: varchar(15), carCapacity: integer(1-8?))
-
+            $table->string('licenseStatus')->default('N/A');
+            $table->string('vehicleName')->nullable();
+            $table->string('make')->nullable();
+            $table->string('model')->nullable();
+            $table->string('color')->nullable();
+            $table->integer('year')->nullable();
+            $table->integer('seats')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
