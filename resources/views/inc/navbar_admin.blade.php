@@ -21,7 +21,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ __('Manage System') }}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">{{ __('Manage Users') }}</a></li>
+                        <li><a href="/admin/members">{{ __('Manage Users') }}</a></li>
                         <li><a href="#">{{ __('Manage Carpools') }}</a></li>
                     </ul>
                 </li>
