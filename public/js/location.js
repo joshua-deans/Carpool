@@ -2,9 +2,13 @@ var map;
 
 function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
-        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
-            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
-        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+        var locationJson = {
+            oriLng: oriMarker.position.lng(),
+            oriLat: oriMarker.position.lng(),
+            destLng: destMarker.position.lng(),
+            destLat: destMarker.position.lat()
+        };
+        $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
     });
 }
 
