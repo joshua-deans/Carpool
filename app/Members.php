@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Driver extends Model
+class Members extends Model
 {
-    protected $table = 'drivers';
+    protected $table = 'users';
 
     protected $primaryKey = 'id';
+
 }

@@ -16,7 +16,11 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
+
                 @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Admin') }}</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
