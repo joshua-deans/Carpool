@@ -15,7 +15,7 @@ class AdminCarpoolController extends Controller
     public function index()
     {
         $carpools = Carpool::all();
-        return view('admin.manage-user')->with('members', $carpools);
+        return view('admin.manage-carpool')->with('carpools', $carpools);
     }
     public function create()
     {
@@ -77,6 +77,6 @@ class AdminCarpoolController extends Controller
     {
         $carpools = Carpool::find($id);
         $carpools->delete();
-        return redirect('/members');
+        return redirect('/carpools');
     }
 }

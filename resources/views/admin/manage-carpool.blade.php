@@ -19,7 +19,7 @@
                     <th>Scheduled Time</th>
                     <th>Action</th>
                 </tr>
-                @foreach($carpools as $members)
+                @foreach($carpools as $carpools)
                     <tr>
                         <td>{{$carpools->rideId}}</td>
                         <td>{{$carpools->driverID}}</td>
@@ -28,7 +28,7 @@
                         <td>{{$carpools->carpoolDateTime}}</td>
                         <td>
 
-                            {!! Form::open(['action' => ['AdminCarpoolController', $members->id], 'method' => 'post']) !!}
+                            {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpools->id], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
@@ -37,7 +37,7 @@
                 @endforeach
             </table>
         @else
-            <h3>No members exist</h3>
+            <h3>No carpools exist</h3>
         @endif
     </div>
 
