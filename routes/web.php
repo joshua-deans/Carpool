@@ -26,7 +26,7 @@ Route::resource('members', 'AdminMembersController');
 Route::resource('carpools', 'AdminCarpoolController');
 
 Route::get('/dashboard', 'DashboardController@index');
-
+Route::post('/dashboard', 'RoutesController@searchMatches');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Route::resource('profile', 'ProfileController');
@@ -40,6 +40,5 @@ Route::get('/vehicle/edit', 'VehicleController@edit')->middleware('auth');
 Route::post('/vehicle/edit', 'VehicleController@editVehicle')->middleware('auth');
 
 Route::get('user/{id}', 'PagesController@dashboard');
-
 
 Route::resource('Routes','RoutesController');

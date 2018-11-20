@@ -1,19 +1,66 @@
 var map;
 
-function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
+function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
-        var locationJson = {
-            oriLng: oriMarker.position.lng(),
-            oriLat: oriMarker.position.lng(),
-            destLng: destMarker.position.lng(),
-            destLat: destMarker.position.lat()
-        };
-        $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
+        if ($('#driv').is(':checked')) {
+            var locationJson = {
+                oriLng: oriMarker.position.lng(),
+                oriLat: oriMarker.position.lng(),
+                destLng: destMarker.position.lng(),
+                destLat: destMarker.position.lat()
+            };
+            $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
+        }
     });
 }
 
+function submitPassengerEventListener(oriMarker, destMarker) {
+    $("#submitChange").click(function (event) {
+        if (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
+            // Sending an AJAX request to /dashboard
+            // This finds the matches in the database and returns them.
+            var token = $('meta[name="csrf-token"]').attr('content');
+            $.post("/dashboard",
+                // this is the data being sent in the POST request
+                {
+                    "_method": 'POST',
+                    "_token": token
+                },
+                // this function runs when the call is completed.
+                function (data, status) {
+                    if (status === "success") {
+                        console.log(data.routes);
+                        if (data.routes.length === 0) {
+                            $(".modal-body").html('<div class="popwindow"><p>No routes found</p></div>');
+                        }
+                        else {
+                            $(".modal-body").html('');
+                            data.routes.forEach(function (route) {
+                                $(".modal-body").append('<h3><a href="/Routes/' + route.rideId + '">Route ID: ' + route.rideId + '</a></h3>' +
+                                    '<small>Date Time:' + route.carpoolDateTime + '</small>');
+                            })
+                        }
+                        $('#route').modal();
+                    }
+                });
+        }
+    });
+}
+
+document.getElementById("pass").addEventListener("click", function(){
+    document.getElementById("submitChange").type="button";
+    document.getElementById("submitChange").dataset.target = "#route";
+});
+
+document.getElementById("driv").addEventListener("click", function(){
+    document.getElementById("submitChange").type="submit";
+    document.getElementById("submitChange").dataset.target = "";
+});
+
 function initMap(){
 //user location section
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11,
@@ -29,6 +76,7 @@ function initMap(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
+
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -114,7 +162,6 @@ function initMap(){
         destPlaced = true;
     });
 
-    submitEventListener(originPlaced, destPlaced, oriMarker, destMarker);
+    submitDriverEventListener(oriMarker, destMarker);
+    submitPassengerEventListener(oriMarker, destMarker);
 }
-
-
