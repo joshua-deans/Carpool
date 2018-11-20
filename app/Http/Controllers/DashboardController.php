@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Driver;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -23,6 +24,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        $user = auth()->user();
+        $driver = Driver::where('id', $user->id)->count();
+        if ($driver <= 0) {
+            return view('pages.dashboard')->with('user', $user)->with('driver', false);
+        } else {
+            return view('pages.dashboard')->with('user', $user)->with('driver', true);
+        }
     }
 }

@@ -26,7 +26,12 @@
                     </div>
                     <div class="form-group">
                         <label class="radio-inline">{{ Form::radio('userType', 'passenger', true) }} Passenger </label>
+                        @if($driver == true)
                         <label class="radio-inline">{{ Form::radio('userType', 'driver') }} Driver </label>
+                        @else
+                            <label class="radio-inline"><input name="userType" type="radio" value="driver" disabled="">
+                                Driver </label>
+                        @endif
                     </div>
                 {{ Form::submit('Submit', ['class'=>'btn btn-primary']) }}
                 {!! Form::close() !!}
