@@ -10,7 +10,7 @@
     @include('inc.navbar_signed_in')
     <div>
         <div class ="left">
-            <h1> Driver Routes</h1>
+            <h1>Routes as Driver</h1>
             @if (count($driver_routes) > 0)
                 @foreach($driver_routes as $route)
                         <div class="well">
@@ -20,12 +20,12 @@
                 @endforeach
                 {{$driver_routes->links()}}
             @else
-                <div class="well"><p> No routes found</p></div>
+                <div class="well"><h3> No routes found</h3></div>
             @endif
         </div>
 
         <div class ="right">
-            <h1> Passenger Routes</h1>
+            <h1>Routes as Passenger</h1>
             @if (count($passenger_routes) > 0)
                 @foreach($passenger_routes as $route)
                     <div class="well">
@@ -35,7 +35,7 @@
                 @endforeach
                 {{$passenger_routes->links()}}
             @else
-                <div class="well"><p> No routes found</p></div>
+                <div class="well"><h3> No routes found</h3></div>
             @endif
         </div>
     </div>
