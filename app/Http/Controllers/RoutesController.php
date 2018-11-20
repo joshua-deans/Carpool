@@ -23,8 +23,8 @@ class RoutesController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(2);
-        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(2);
+        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(2, ['*'], 'droutes');
+        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(2, ['*'], 'proutes');
         return view('routes.index')->with('driver_routes',$driver_routes)
                                         ->with('passenger_routes',$passenger_routes)
                                         ->with('user_id',$user_id);
@@ -69,13 +69,12 @@ class RoutesController extends Controller
     public function show($id)
     {
         $routes = Carpool::find($id);
-        $passenger = User::find($routes->passID);
-        $driver = User::find($routes->driverID);
+        $passenger = User::where('id',$routes->passID)->get();
+        $driver = User::where('id',$routes->driverID)->get();
         return view('routes.show')
             ->with('routes',$routes)
             ->with('passenger',$passenger)
             ->with('driver',$driver);
-
     }
 
     /**
@@ -86,7 +85,8 @@ class RoutesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $routes = Carpool::find($id);
+        return view('routes.edit')->with('routes',$routes);
     }
 
     /**

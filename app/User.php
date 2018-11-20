@@ -31,4 +31,8 @@ class User extends Authenticatable
     public static function find($id)
     {
     }
+    public function carpools()
+    {
+        return $this->belongsToMany('App\Carpool');
+    }
 }
