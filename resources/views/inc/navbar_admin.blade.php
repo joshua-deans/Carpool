@@ -22,7 +22,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{route('members.index')}}">{{ __('Manage Users') }}</a></li>
-                        <li><a href="#">{{ __('Manage Carpools') }}</a></li>
+                        <li><a href="{{route('carpools.index')}}">{{ __('Manage Carpools') }}</a></li>
                     </ul>
                 </li>
                 <li><a href="/admin">Dashboard</a></li>

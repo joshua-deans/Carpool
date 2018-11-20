@@ -22,7 +22,8 @@ Route::prefix('admin')->group(function(){
 
 });
 
-Route::resource('members', 'AdminRemoveController');
+Route::resource('members', 'AdminMembersController');
+Route::resource('carpools', 'AdminCarpoolController');
 
 Route::get('/dashboard', 'DashboardController@index');
 

@@ -12,20 +12,19 @@
         @if(count($members) > 0)
             <table>
                 <tr>
+                    <th>Ride ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
-                    <th>Birthdate</th>
                     <th>Action</th>
                 </tr>
                 @foreach($members as $members)
                     <tr>
+                        <td>{{$members->id}}</td>
                         <td>{{$members->name}}</td>
                         <td>{{$members->email}}</td>
-                        <td>{{$members->phone}}</td>
-                        <td>{{$members->birthday}}</td>
                         <td>
-                            {!! Form::open(['action' => ['AdminMembersController@destroy', $members->id], 'method' => 'post']) !!}
+
+                            {!! Form::open(['action' => ['AdminMembersController', $members->id], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
