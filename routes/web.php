@@ -18,7 +18,7 @@ Auth::routes();
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login');
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminDashboardController@index');
 
 });
 
@@ -35,10 +35,6 @@ Route::get('/vehicle', 'VehicleController@index')->middleware('auth');
 Route::POST('/vehicle/add', 'VehicleController@add')->middleware('auth');
 Route::get('/vehicle/edit', 'VehicleController@edit')->middleware('auth');
 Route::post('/vehicle/edit', 'VehicleController@editVehicle')->middleware('auth');
-
-
-
-
 
 Route::get('user/{id}', 'PagesController@dashboard');
 

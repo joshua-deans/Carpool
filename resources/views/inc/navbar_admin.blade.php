@@ -14,17 +14,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ __('Manage Accounts') }}
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">{{ __('Edit') }}</a></li>
-                        <li><a href="#">{{ __('Remove') }}</a></li>
-                        <li><a href="#">{{ __('Block') }}</a></li>
-                    </ul>
-                </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ __('Manage System') }}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">{{ __('Manage Users') }}</a></li>
+                        <li><a href="#">{{ __('Manage Carpools') }}</a></li>
+                    </ul>
+                </li>
+                <li><a href="/admin">Dashboard</a></li>
                 <li><a href="{{url('/logout')}}">Sign Out</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
