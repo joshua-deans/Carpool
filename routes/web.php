@@ -19,8 +19,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login');
     Route::get('/', 'AdminDashboardController@index');
-//    Route::get('/members', 'AdminRemoveController@index');
-//    Route::post('/remove', 'AdminRemoveController@destroy');
+
 });
 
 Route::resource('members', 'AdminRemoveController');
