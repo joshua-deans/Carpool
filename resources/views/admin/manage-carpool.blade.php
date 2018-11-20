@@ -9,22 +9,26 @@
 
 @section('content')
     <div class="container">
-        @if(count($members) > 0)
+        @if(count($carpools) > 0)
             <table>
                 <tr>
                     <th>Ride ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th>Driver</th>
+                    <th>Passengers</th>
+                    <th>Capacity</th>
+                    <th>Scheduled Time</th>
                     <th>Action</th>
                 </tr>
-                @foreach($members as $members)
+                @foreach($carpools as $members)
                     <tr>
-                        <td>{{$members->id}}</td>
-                        <td>{{$members->name}}</td>
-                        <td>{{$members->email}}</td>
+                        <td>{{$carpools->rideId}}</td>
+                        <td>{{$carpools->driverID}}</td>
+                        <td>{{$carpools->peopleCur}}</td>
+                        <td>{{$carpools->peopleCap}}</td>
+                        <td>{{$carpools->carpoolDateTime}}</td>
                         <td>
 
-                            {!! Form::open(['action' => ['AdminMembersController', $members->id], 'method' => 'post']) !!}
+                            {!! Form::open(['action' => ['AdminCarpoolController', $members->id], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
