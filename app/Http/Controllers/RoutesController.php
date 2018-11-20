@@ -51,9 +51,13 @@ class RoutesController extends Controller
         $carpool->peopleCap = 0;
         $carpool->peopleCur = 0;
         $carpool->coords = $request->input('locJSON');
-        $carpool->save();
+        $saved = $carpool->save();
 
-        return redirect('/dashboard');
+        if ($saved) {
+            return redirect('/dashboard')->with('success', 'Route was created.');
+        } else {
+            return redirect('/dashboard')->with('error', 'Route could not be created.');
+        }
     }
 
     /**

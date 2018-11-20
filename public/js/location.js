@@ -34,18 +34,19 @@ function initMap(){
             });
             marker.setMap(map);
             map.setCenter(pos);
-            /*marker.addListener('mouseover', function () { //hover the pin animation
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    marker.setAnimation(null);
-                }, 1000)
-            });*/
         },function(){
-            alert("Location service is disabled by your browser for this website");
+            var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
+                "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
+                "<strong>Error!</strong> Location service is disabled by your browser for this website.\n" +
+                "</div>");
+            $('.alert-container').append($newdiv);
         });
     } else {
-        // Browser doesn't support Geolocation
-        alert("Browser doesn't support Geolocation, we are unable to get your location");
+        var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
+            "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
+            "<strong>Error!</strong> Browser doesn't support Geolocation, we are unable to get your location.\n" +
+            "</div>");
+        $('.alert-container').append($newdiv);
     }
 
 
