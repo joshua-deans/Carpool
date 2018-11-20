@@ -29,10 +29,20 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                 },
                 // this function runs when the call is completed.
                 function (data, status) {
-                    console.log(data);
-                    console.log(status);
-                    $('#route').modal();
-                    // alert("AJAX completed");
+                    if (status === "success") {
+                        console.log(data.routes);
+                        if (data.routes.length === 0) {
+                            $(".modal-body").html('<div class="popwindow"><p>No routes found</p></div>');
+                        }
+                        else {
+                            $(".modal-body").html('');
+                            data.routes.forEach(function (route) {
+                                $(".modal-body").append('<h3><a href="/Routes/' + route.rideId + '">Route ID: ' + route.rideId + '</a></h3>' +
+                                    '<small>Date Time:' + route.carpoolDateTime + '</small>');
+                            })
+                        }
+                        $('#route').modal();
+                    }
                 });
         }
     });
