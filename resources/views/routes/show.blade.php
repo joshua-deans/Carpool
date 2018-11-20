@@ -20,6 +20,6 @@
             <li class="list-group-item">Location:{{$routes->coords}}</li>
         </ul>
 
-        <a href="/Routes/{{$routes->rideID}}/edit"  class="btn btn-default">Edit</a>
+        <a href="/Routes/{{$routes->rideId}}/edit"  class="btn btn-default">Edit</a>
     </div>
 @endsection
