@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Carpool;
 use App\User;
+use App\Driver;
 
 
 class RoutesController extends Controller
@@ -71,10 +72,12 @@ class RoutesController extends Controller
         $routes = Carpool::find($id);
         $passenger = User::where('id',$routes->passID)->get();
         $driver = User::where('id',$routes->driverID)->get();
+        $driver_detail = Driver::where('id',$routes->driverID)->get();
         return view('routes.show')
             ->with('routes',$routes)
             ->with('passenger',$passenger)
-            ->with('driver',$driver);
+            ->with('driver',$driver)
+            ->with('driver_detail',$driver_detail);
     }
 
     /**
@@ -109,6 +112,8 @@ class RoutesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $routes = Carpool::find($id);
+        $routes->delete();
+        return redirect('/Routes');
     }
 }
