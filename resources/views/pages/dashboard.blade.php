@@ -30,7 +30,7 @@
                         <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
                         <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                     </div>
-                    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route" id="submitChange">Submit</button>
+                <button type="button" class="btn btn-primary" id="submitChange">Submit</button>
                 {!! Form::close() !!}
                 <br>
             </div>

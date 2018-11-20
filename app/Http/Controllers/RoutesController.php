@@ -26,6 +26,12 @@ class RoutesController extends Controller
         return view('routes.index')->with('routes',$routes);
     }
 
+    public function searchMatches()
+    {
+        $routes = Carpool::all();
+        return response()->json(array('routes' => $routes));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

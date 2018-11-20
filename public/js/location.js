@@ -1,10 +1,36 @@
 var map;
 
-function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
+function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
-        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
-            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
-        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+        if ($('#driv').is(':checked')) {
+            var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
+                ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
+            $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+        }
+    });
+}
+
+function submitPassengerEventListener(oriMarker, destMarker) {
+    $("#submitChange").click(function (event) {
+        if (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
+            // Sending an AJAX request to /dashboard
+            // This finds the matches in the database and returns them.
+            var token = $('meta[name="csrf-token"]').attr('content');
+            $.post("/dashboard",
+                // this is the data being sent in the POST request
+                {
+                    "_method": 'POST',
+                    "_token": token
+                },
+                // this function runs when the call is completed.
+                function (data, status) {
+                    console.log(data);
+                    console.log(status);
+                    $('#route').modal();
+                    // alert("AJAX completed");
+                });
+        }
     });
 }
 
@@ -108,5 +134,6 @@ function initMap(){
         destPlaced = true;
     });
 
-    submitEventListener(originPlaced, destPlaced, oriMarker, destMarker);
+    submitDriverEventListener(oriMarker, destMarker);
+    submitPassengerEventListener(oriMarker, destMarker);
 }
