@@ -61,7 +61,7 @@
         <br><br>
         <div class="row text-center">
             <a href="profile/edit" class="btn btn-primary btn-lg profileButton">Edit</a>
-            <a href="vehicle" class="btn btn-primary btn-lg profileButton">My Vehicle</a>
+            <a href="vehicle" class="btn btn-primary btn-lg ">Driver Status</a>
         </div>
     </div>
 
