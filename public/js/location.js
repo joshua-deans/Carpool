@@ -1,10 +1,50 @@
 var map;
 
-function submitEventListener(originPlaced, destPlaced, oriMarker, destMarker) {
+function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
-        var locationJson = '{ oriLng : ' + oriMarker.position.lng() + ',oriLat: ' + oriMarker.position.lng() +
-            ',destLng: ' + destMarker.position.lng() + ', destLat: ' + destMarker.position.lat() + ' }';
-        $(this).append('<input type="hidden" name="locJSON" value="' + locationJson + '" />');
+        if ($('#driv').is(':checked')) {
+            var locationJson = {
+                oriLng: oriMarker.position.lng(),
+                oriLat: oriMarker.position.lng(),
+                destLng: destMarker.position.lng(),
+                destLat: destMarker.position.lat()
+            };
+            $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
+        }
+    });
+}
+
+function submitPassengerEventListener(oriMarker, destMarker) {
+    $("#submitChange").click(function (event) {
+        if (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
+            // Sending an AJAX request to /dashboard
+            // This finds the matches in the database and returns them.
+            var token = $('meta[name="csrf-token"]').attr('content');
+            $.post("/dashboard",
+                // this is the data being sent in the POST request
+                {
+                    "_method": 'POST',
+                    "_token": token
+                },
+                // this function runs when the call is completed.
+                function (data, status) {
+                    if (status === "success") {
+                        console.log(data.routes);
+                        if (data.routes.length === 0) {
+                            $(".modal-body").html('<div class="popwindow"><p>No routes found</p></div>');
+                        }
+                        else {
+                            $(".modal-body").html('');
+                            data.routes.forEach(function (route) {
+                                $(".modal-body").append('<h3><a href="/Routes/' + route.rideId + '">Route ID: ' + route.rideId + '</a></h3>' +
+                                    '<small>Date Time:' + route.carpoolDateTime + '</small>');
+                            })
+                        }
+                        $('#route').modal();
+                    }
+                });
+        }
     });
 }
 document.getElementById("pass").addEventListener("click", function(){
@@ -21,7 +61,8 @@ function initMap(){
 //user location section
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
-        zoom: 11
+        zoom: 11,
+        disableDefaultUI: true
     });
 
     var imageCurrent = {
@@ -43,12 +84,6 @@ function initMap(){
             });
             marker.setMap(map);
             map.setCenter(pos);
-            /*marker.addListener('mouseover', function () { //hover the pin animation
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    marker.setAnimation(null);
-                }, 1000)
-            });*/
         },function(){
             alert("Location service is disabled by your browser for this website");
         });
@@ -84,11 +119,17 @@ function initMap(){
             lat: origin_places.geometry.location.lat(),
             lng: origin_places.geometry.location.lng()
         };
+        markerBounds = new google.maps.LatLngBounds();
+        if (destPlaced) {
+            markerBounds.extend(destMarker.getPosition());
+        }
         oriMarker.setPosition(oriPos);
         oriMarker.setVisible(true);
         oriMarker.setMap(map);
-        map.setCenter(new google.maps.LatLng(oriPos.lat, oriPos.lng));
-        map.setZoom(9);
+        map.fitBounds(markerBounds.extend(oriMarker.getPosition()));
+        if (!destPlaced) {
+            map.setZoom(14);
+        }
         originPlaced = true;
     });
 
@@ -98,13 +139,20 @@ function initMap(){
             lat: destination_places.geometry.location.lat(),
             lng: destination_places.geometry.location.lng()
         };
+        markerBounds = new google.maps.LatLngBounds();
+        if (originPlaced) {
+            markerBounds.extend(oriMarker.getPosition());
+        }
         destMarker.setPosition(destiPos);
         destMarker.setVisible(true);
         destMarker.setMap(map);
-        map.setCenter(new google.maps.LatLng(destiPos.lat, destiPos.lng));
-        map.setZoom(9);
+        map.fitBounds(markerBounds.extend(destMarker.getPosition()));
+        if (!originPlaced) {
+            map.setZoom(14);
+        }
         destPlaced = true;
     });
 
-    submitEventListener(originPlaced, destPlaced, oriMarker, destMarker);
+    submitDriverEventListener(oriMarker, destMarker);
+    submitPassengerEventListener(oriMarker, destMarker);
 }

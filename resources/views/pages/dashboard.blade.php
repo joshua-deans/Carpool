@@ -30,7 +30,7 @@
                         <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
                         <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                     </div>
-                    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#route" id="submitChange">Submit</button>
+                <button type="button" class="btn btn-primary" id="submitChange">Submit</button>
                 {!! Form::close() !!}
                 <br>
             </div>
@@ -44,13 +44,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Matching Routes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    My routes
                     @if (count($routes)>0)
                         @foreach($routes as $route)
                             <div class="popwindow">
