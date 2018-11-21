@@ -26,13 +26,11 @@
                     </div>
                     <div class="form-group">
                         <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
-                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
-                        <label class="radio-inline">{{ Form::radio('userType', 'passenger', true) }} Passenger </label>
                         @if($driver == true)
-                        <label class="radio-inline">{{ Form::radio('userType', 'driver') }} Driver </label>
+                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                         @else
-                            <label class="radio-inline"><input name="userType" type="radio" value="driver" disabled="">
-                                Driver </label>
+                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
+                                                               disabled>Driver</label>
                         @endif
                     </div>
                 <button type="button" class="btn btn-primary" id="submitChange">Submit</button>
