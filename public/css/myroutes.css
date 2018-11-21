@@ -5,16 +5,15 @@ h1{
 .left{
 
     margin-left: 10%;
-    margin-right: 10%;
+    margin-right: 5%;
     float:left;
-    width:75%;
+    width: fit-content;
     overflow:hidden;
 }
 .right{
-    margin-left: 10%;
-    margin-right: 10%;
+
     float:left;
-    width:75%;
+    width: fit-content;
     overflow:hidden;
 }
 
