@@ -27,7 +27,10 @@ function submitDriverEventListener(oriMarker, destMarker) {
                 destLng: destMarker.position.lng(),
                 destLat: destMarker.position.lat()
             };
-            $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
+            //alert("'"+JSON.stringify(locationJson)+"'");
+            var driverCoords = JSON.stringify(locationJson);
+            $(this).append('<input id="actualLocation-driver" type="hidden" name="locJSON"/>');
+            document.getElementById("actualLocation-driver").value = driverCoords;
         }
         else {
             event.preventDefault();
@@ -46,9 +49,9 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                 destLng: destMarker.position.lng(),
                 destLat: destMarker.position.lat()
             };
-
-            $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
-            // Sending an AJAX request to /dashboard
+            var passengerCoords = JSON.stringify(locationJson);
+            $(this).append('<input id="actualLocation-passenger" type="hidden" name="locJSON"/>');
+            document.getElementById("actualLocation-passenger").value = passengerCoords;            // Sending an AJAX request to /dashboard
             // This finds the matches in the database and returns them.
             var token = $('meta[name="csrf-token"]').attr('content');
             $.post("/dashboard",
@@ -61,7 +64,7 @@ function submitPassengerEventListener(oriMarker, destMarker) {
     });
 }
 
-function initMap(){
+function initMap() {
 //user location section
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
@@ -71,9 +74,9 @@ function initMap(){
 
     var imageCurrent = {
         url: "../svg/dot_316742.png", // url
-        scaledSize: new google.maps.Size(30,30), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(20,20) // anchor
+        scaledSize: new google.maps.Size(30, 30), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(20, 20) // anchor
     };
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -88,7 +91,7 @@ function initMap(){
             });
             marker.setMap(map);
             map.setCenter(pos);
-        },function(){
+        }, function () {
             alert("Location service is disabled by your browser for this website");
         });
     } else {
@@ -113,24 +116,24 @@ function initMap(){
     //initialize two markers
     var oriMarker = new google.maps.Marker({
         position: initialMarkerLocation,
-        label:'S'
+        label: 'S'
     });
 
     var originPlaced = false;
     var destMarker = new google.maps.Marker({
         position: initialMarkerLocation,
-        label:'D'
+        label: 'D'
     });
     var destPlaced = false;
 
     //event handlers
     var useOri = origin_compele_passenger;
     var useDest = destination_compele_passenger;
-    if(flag === "driver") {
+    if (flag === "driver") {
         useOri = origin_compele;
         useDest = destination_compele;
     }
-    google.maps.event.addListener(useOri, 'place_changed', function(){
+    google.maps.event.addListener(useOri, 'place_changed', function () {
         var origin_places = useOri.getPlace();
         var oriPos = {
             lat: origin_places.geometry.location.lat(),
@@ -150,7 +153,7 @@ function initMap(){
         originPlaced = true;
     });
 
-    google.maps.event.addListener(useDest, 'place_changed', function(){
+    google.maps.event.addListener(useDest, 'place_changed', function () {
         var destination_places = useDest.getPlace();
         var destiPos = {
             lat: destination_places.geometry.location.lat(),
@@ -170,11 +173,11 @@ function initMap(){
         destPlaced = true;
     });
 
-
-    submitDriverEventListener(oriMarker, destMarker);
-
-    submitPassengerEventListener(oriMarker, destMarker);
-
+    if (flag === "driver"){
+        submitDriverEventListener(oriMarker, destMarker);
+    }else if(flag === "passenger"){
+        submitPassengerEventListener(oriMarker, destMarker);
+    }
 }
 
 
