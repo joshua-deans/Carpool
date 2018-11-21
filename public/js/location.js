@@ -20,7 +20,8 @@ document.getElementById("driv").addEventListener("click", function(){
 
 function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form-driver").submit(function (event) {
-        if(flag==="driver") {
+        if ($('#driv').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lat(),
@@ -39,10 +40,9 @@ function submitDriverEventListener(oriMarker, destMarker) {
 }
 
 function submitPassengerEventListener(oriMarker, destMarker) {
-    $("#submitChange-passenger").click(function (event) {
-        //submitChange-passengerif (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
-        //    && $('#datetimepicker').val() !== "") {
-        if(flag==="passenger") {
+    $("#commute-form-passenger").submit(function (event) {
+        if ($('#pass').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lat(),
@@ -91,12 +91,19 @@ function initMap() {
             });
             marker.setMap(map);
             map.setCenter(pos);
-        }, function () {
-            alert("Location service is disabled by your browser for this website");
+        },function(){
+            var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
+                "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
+                "<strong>Error!</strong> Location service is disabled by your browser for this website.\n" +
+                "</div>");
+            $('.alert-container').append($newdiv);
         });
     } else {
-        // Browser doesn't support Geolocation
-        alert("Browser doesn't support Geolocation, we are unable to get your location");
+        var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
+            "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
+            "<strong>Error!</strong> Browser doesn't support Geolocation, we are unable to get your location.\n" +
+            "</div>");
+        $('.alert-container').append($newdiv);
     }
 
 

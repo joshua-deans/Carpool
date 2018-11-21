@@ -10,6 +10,19 @@
 @include('inc.navbar_signed_in')
 
 @section('content')
+    <div class="container-fluid alert-container" style="margin-bottom: -40px">
+        @if (Session::has('success'))
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> {{ Session::get('success') }}
+            </div>
+        @elseif (Session::has('error'))
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> {{ Session::get('error') }}
+            </div>
+        @endif
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">

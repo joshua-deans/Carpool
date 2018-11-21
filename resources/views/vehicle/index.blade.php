@@ -9,7 +9,7 @@
     @include('inc.messages')
     <div class="container vehicleHeader">
         <div class="row">
-    @if($vehicle)
+            @if($vehicle)
                 <div class="col-md-5">
                 @if ($vehicle->picture)
                     <img src="{{asset('images/'.$vehicle->picture)}}" class="vehiclePicture">

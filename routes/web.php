@@ -37,6 +37,7 @@ Route::post('/displayroute', 'RoutesController@matching');
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::put('/profile/edit', 'ProfileController@update')->middleware('auth');
+Route::get('/profile/{id}', 'ProfileController@getPublic')->middleware('auth');
 
 Route::get('/vehicle', 'VehicleController@index')->middleware('auth');
 Route::POST('/vehicle/add', 'VehicleController@add')->middleware('auth');
