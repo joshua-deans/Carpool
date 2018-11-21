@@ -47,4 +47,14 @@ class ProfileController extends Controller
 
         return redirect('/profile')->with('user', $user);
     }
+
+    public function getPublic($id){
+        $user = User::find($id);
+        if ($user){
+            return view('profile.public')->with('user', $user);
+        }
+        else{
+            abort(404);
+        }
+    }
 }
