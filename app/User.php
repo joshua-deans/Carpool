@@ -28,11 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function find($id)
-    {
-    }
-    public function carpools()
-    {
-        return $this->belongsToMany('App\Carpool');
-    }
+//    public static function find($id)
+//    {
+//    }
 }

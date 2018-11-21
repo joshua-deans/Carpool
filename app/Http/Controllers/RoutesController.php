@@ -31,6 +31,12 @@ class RoutesController extends Controller
                                         ->with('user_id',$user_id);
     }
 
+    public function searchMatches()
+    {
+        $routes = Carpool::all();
+        return response()->json(array('routes' => $routes));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,6 +55,11 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array(
+            'origin' => 'required',
+            'destination' => 'required',
+            'time' => 'required|numeric'
+        ));
         $carpool = new Carpool;
         $carpool->driverID = auth()->user()->id;
         $carpool->passID = null;
@@ -56,9 +67,13 @@ class RoutesController extends Controller
         $carpool->peopleCap = 0;
         $carpool->peopleCur = 0;
         $carpool->coords = $request->input('locJSON');
-        $carpool->save();
+        $saved = $carpool->save();
 
-        return redirect('/dashboard');
+        if ($saved) {
+            return redirect('/dashboard')->with('success', 'Route was created.');
+        } else {
+            return redirect('/dashboard')->with('error', 'Route could not be created.');
+        }
     }
 
     /**

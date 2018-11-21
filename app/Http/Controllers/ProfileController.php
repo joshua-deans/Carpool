@@ -26,7 +26,7 @@ class ProfileController extends Controller
     public function update(Request $request){
         $this->validate($request, array(
             'name' => 'required',
-            'phone' => 'required|integer|max:9999999999',
+            'phone' => 'required|numeric|max:9999999999|min:1000000000',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ));
         $user = auth()->user();
@@ -46,5 +46,15 @@ class ProfileController extends Controller
         $updateUser->save();
 
         return redirect('/profile')->with('user', $user);
+    }
+
+    public function getPublic($id){
+        $user = User::find($id);
+        if ($user){
+            return view('profile.public')->with('user', $user);
+        }
+        else{
+            abort(404);
+        }
     }
 }
