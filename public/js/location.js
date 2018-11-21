@@ -12,6 +12,9 @@ function submitDriverEventListener(oriMarker, destMarker) {
             };
             $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
         }
+        else {
+            event.preventDefault();
+        }
     });
 }
 
