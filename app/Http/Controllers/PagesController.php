@@ -15,14 +15,6 @@ class PagesController extends Controller
         return view('landing');
     }
 
-    public function login_page(){
-        return view('pages.login');
-    }
-
-    public function signup_page(){
-        return view('pages.signup');
-    }
-
     function dashboard($id)
     {
         return view('pages.dashboard');
