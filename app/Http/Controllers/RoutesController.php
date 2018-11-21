@@ -54,6 +54,11 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array(
+            'origin' => 'required',
+            'destination' => 'required',
+            'time' => 'required|numeric'
+        ));
         $carpool = new Carpool;
         $carpool->driverID = auth()->user()->id;
         $carpool->passID = null;
