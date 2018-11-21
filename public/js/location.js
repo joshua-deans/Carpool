@@ -20,7 +20,7 @@ document.getElementById("driv").addEventListener("click", function(){
 
 function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form-driver").submit(function (event) {
-        if(flag=="driver") {
+        if(flag==="driver") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lat(),
@@ -39,13 +39,14 @@ function submitPassengerEventListener(oriMarker, destMarker) {
     $("#submitChange-passenger").click(function (event) {
         //submitChange-passengerif (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
         //    && $('#datetimepicker').val() !== "") {
-        if(flag=="passenger") {
+        if(flag==="passenger") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lat(),
                 destLng: destMarker.position.lng(),
                 destLat: destMarker.position.lat()
             };
+
             $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
             // Sending an AJAX request to /dashboard
             // This finds the matches in the database and returns them.
@@ -56,23 +57,6 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                     "_method": 'POST',
                     "_token": token
                 })
-            // this function runs when the call is completed.
-            /*function (data, status) {
-                if (status === "success") {
-                    console.log(data.routes);
-                    if (data.routes.length === 0) {
-                        $(".modal-body").html('<div class="popwindow"><p>No routes found</p></div>');
-                    }
-                    else {
-                        $(".modal-body").html('');
-                        data.routes.forEach(function (route) {
-                            $(".modal-body").append('<h3><a href="/Routes/' + route.rideId + '">Route ID: ' + route.rideId + '</a></h3>' +
-                                '<small>Date Time:' + route.carpoolDateTime + '</small>');
-                        })
-                    }
-                    $('#route').modal();
-                }
-            });*/
         }
     });
 }
@@ -142,7 +126,7 @@ function initMap(){
     //event handlers
     var useOri = origin_compele_passenger;
     var useDest = destination_compele_passenger;
-    if(flag == "driver") {
+    if(flag === "driver") {
         useOri = origin_compele;
         useDest = destination_compele;
     }
@@ -191,7 +175,7 @@ function initMap(){
 
     submitPassengerEventListener(oriMarker, destMarker);
 
-};
+}
 
 
 const fpPassenger = flatpickr("#datetimepicker-passenger", {
@@ -210,34 +194,3 @@ const fpDriver = flatpickr("#datetimepicker", {
     dateFormat: "U"
 });
 
-
-/*
-<div class="modal fade" id="route" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLongTitle">Matching Routes</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-    @if (count($routes)>0)
-@foreach($routes as $route)
-    <div class="popwindow">
-    <h3><a href="/Routes/{{$route->rideID}}">route id: {{$route->rideID}}</a></h3>
-<small>date time:{{$route->carpoolDateTime}}</small>
-</div>
-@endforeach
-{{$routes->links()}}
-@else
-<div class="popwindow"><p>No routes found</p></div>
-@endif
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button>
-</div>
-</div>
-</div>
-</div>*/
