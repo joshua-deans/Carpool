@@ -17,7 +17,7 @@ load:
   - sudo composer install
   - sudo chgrp -R www-data /var/www/html/carpool
   - sudo chmod -R 775 /var/www/html/carpool/storage
-  - sudo php artisan migrate:fresh
+  - sudo php artisan migrate:fresh --seed
   - sudo mkdir /var/www/html/carpool/public/images
   - sudo chmod -R 777 /var/www/html/carpool/public/images
   only: 
