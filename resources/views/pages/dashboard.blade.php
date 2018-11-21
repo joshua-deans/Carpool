@@ -7,7 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endsection
 
+@if($driver == true)
 @include('inc.navbar_signed_in')
+@else
+    @include('inc.navbar_signed_in_2')
+@endif
 
 @section('content')
     <div class="container-fluid alert-container" style="margin-bottom: -40px">
