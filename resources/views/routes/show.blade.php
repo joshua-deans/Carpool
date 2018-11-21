@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('stylesheet')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+        var dateString = moment.unix(value).format("MM/DD/YYYY");
 
+    </script>
     <link href="{{ asset('css/myroutes.css') }}" rel="stylesheet">
+
+
 @endsection
 
 @section('content')
@@ -18,7 +23,7 @@
 
             <ul class="list-group">
 
-                <li class="list-group-item" id="datetime"></li>
+                <li class="list-group-item" id="datetime">datetime: <?php echo gmdate("l jS F Y h:i:s A", $routes->datetime);?></li>
                 <li class="list-group-item">driver name:{{$driver[0]->name}}</li>
                 @if (count($passenger) > 0)
                     <li class="list-group-item">passenger name:{{$passenger[0]->name}}</li>

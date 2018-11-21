@@ -15,7 +15,7 @@
                 @foreach($driver_routes as $route)
                         <div class="well">
                             <h3><a href="/Routes/{{$route->rideId}}">route id: {{$route->rideId}}</a></h3>
-                            <small>date time:{{$route->carpoolDateTime}}</small>
+                            <small><?php echo gmdate("l jS F Y h:i:s A", $route->datetime)?> </small>
                         </div>
                 @endforeach
                 {{$driver_routes->links()}}
@@ -30,7 +30,7 @@
                 @foreach($passenger_routes as $route)
                     <div class="well">
                         <h3><a href="/Routes/{{$route->rideId}}">route id: {{$route->rideId}}</a></h3>
-                        <small>date time:{{$route->carpoolDateTime}}</small>
+                        <small><?php echo gmdate("l jS F Y h:i:s A", $route->datetime)?></small>
                     </div>
                 @endforeach
                 {{$passenger_routes->links()}}
