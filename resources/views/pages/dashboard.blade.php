@@ -16,19 +16,22 @@
                 <h3>Plan your Commute!</h3>
                 {!!Form::open(['action'=>'RoutesController@store','id'=>"commute-form",'method'=>"POST"])!!}
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin" required="required">
+                        {{ Form::text('origin', '', ['class'=>'form-control', 'id'=>'input-origin', 'placeholder'=>'Origin', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input-dest" name="destination"
-                               placeholder="Destination" required="required">
+                        {{ Form::text('destination', '', ['class'=>'form-control', 'id'=>'input-dest', 'placeholder'=>'Destination', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
-                        <input type='text' class="form-control" id='datetimepicker' name="time"
-                               placeholder="Departure Time" required="required">
+                        {{ Form::text('time', '', ['class'=>'form-control', 'id'=>'datetimepicker', 'placeholder'=>'Departure Time', 'required'=>''])  }}
                     </div>
                     <div class="form-group">
                         <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
-                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
+                        @if($driver == true)
+                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
+                        @else
+                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
+                                                               disabled>Driver</label>
+                        @endif
                     </div>
                 <button type="button" class="btn btn-primary" id="submitChange">Submit</button>
                 {!! Form::close() !!}
