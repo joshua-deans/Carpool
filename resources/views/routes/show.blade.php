@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript">
-        var x = document.getElementById('datetime');
-        var d = moment("{{$routes->carpoolDateTime}}", "HH:mm:ss").format('MMMM Do YYYY, h:mm:ss a');
-        x.innerHTML = "date time: "+d;
-    </script>
+
     <link href="{{ asset('css/myroutes.css') }}" rel="stylesheet">
 @endsection
 
@@ -19,7 +14,7 @@
             <p id="oriName"></p>
             <h1> end: </h1>
             <p id="destName"></p>
-            ;
+
 
             <ul class="list-group">
 
@@ -33,12 +28,12 @@
 
                 <li class="list-group-item">Capacity:{{$routes->peopleCap}}</li>
                 <li class="list-group-item">Current passengers:{{$routes->peopleCur}}</li>
-                <li class="list-group-item">Location: need to transfer json int to name{{$routes->coords}}</li>
+                <li class="list-group-item">Location: need to transfer json int to name {{$routes->coords}}</li>
             </ul>
 
-            {!! Form::open(['action' => ['RoutesController@destroy', $routes->rideID], 'method' => 'POST', 'class' => 'pull-right']) !!}
-                {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Delete', ['class'=> 'btn btn-danger']) }}
+            {!! Form::open(['action' => ['RoutesController@destroy', $routes->rideId], 'method' => 'post']) !!}
+            {{Form::hidden('_method', 'delete')}}
+            {{Form::button('<i class="fas fa-trash">Delete</i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
             {!! Form::close() !!}
         </div>
     </div>
