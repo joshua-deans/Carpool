@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Driver;
 use Illuminate\Http\Request;
+use App\Carpool;
 
 class DashboardController extends Controller
 {
@@ -23,6 +25,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        $user = auth()->user();
+        $driver = Driver::where('id', $user->id)->count();
+        $routes = Carpool::orderBy('carpoolDateTime')->paginate(2);
+        if ($driver <= 0) {
+            return view('pages.dashboard')->with('user', $user)->with('routes',$routes)->with('driver', false);
+        } else {
+            return view('pages.dashboard')->with('user', $user)->with('routes',$routes)->with('driver', true);
+        }
     }
 }
