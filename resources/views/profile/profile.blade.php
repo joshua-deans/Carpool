@@ -48,12 +48,9 @@
                     echo $user->birthday;
                     ?>
                 </h3>
-                <h3>
-                    Rating:
-                    <?php
-                    echo $user->avgRating;
-                    ?>
-                </h3>
+                <h5>
+                    <a href="{{ url('profile/'.$user->id) }}">My Public Profile</a>
+                </h5>
             </div>
         {{--</div>--}}
 
