@@ -28,6 +28,10 @@ Route::resource('carpools', 'AdminCarpoolController');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'RoutesController@searchMatches');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::post('/displayroute', 'RoutesController@matching');
+
+
+
 
 //Route::resource('profile', 'ProfileController');
 Route::get('/profile', 'ProfileController@index')->middleware('auth');

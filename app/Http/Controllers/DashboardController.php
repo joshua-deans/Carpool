@@ -22,9 +22,19 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $routes = Carpool::orderBy('carpoolDateTime')->paginate(2);
-        return view('pages.dashboard')->with('routes',$routes);
+        //$departTime = $request->input('time');
+        //$origin = $request->input('origin');
+        //$dest = $request->input('destination');
+
+        //$matchTime = Carpool::find($departTime);
+        //$matchOrigin = $matchTime::find($origin);
+        //$routes = $matchOrigin::find($dest)->paginate(100);
+        //$routes = Carpool::orderBy('carpoolDateTime')->paginate(100);
+        //$routes = Carpool::where('carpoolDateTime', $departTime)->first();
+        //$routes = Carpool::orderBy('carpoolDateTime')->paginate(100);
+        //return view('pages.dashboard')->with('routes',$routes);
+        return view('pages.dashboard');
     }
 }
