@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carpool;
+use App\Members;
 use Illuminate\Http\Request;
 
 class AdminCarpoolController extends Controller
@@ -15,7 +16,21 @@ class AdminCarpoolController extends Controller
     public function index()
     {
         $carpools = Carpool::all();
-        return view('admin.manage-user')->with('members', $carpools);
+        $driversArray = [];
+        $passengerArray = [];
+
+        foreach($carpools as $carpool){
+            $driver = Members::find($carpool->driverID);
+            $passenger = Members::find($carpool->passID);
+            $driverName = $driver['name'];
+            $passName = $passenger['name'];
+            $driversArray[$carpool->driverID] = $driverName;
+            $passengerArray[$carpool->passID] = $passName;
+        }
+
+        return view('admin.manage-carpool')->with('carpools', $carpools)
+                                                ->with('driverNames', $driversArray)
+                                                ->with('passengerNames', $passengerArray);
     }
     public function create()
     {
@@ -77,6 +92,6 @@ class AdminCarpoolController extends Controller
     {
         $carpools = Carpool::find($id);
         $carpools->delete();
-        return redirect('/members');
+        return redirect('/carpools');
     }
 }
