@@ -2,7 +2,8 @@ var map;
 
 function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form").submit(function (event) {
-        if ($('#driv').is(':checked')) {
+        if ($('#driv').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lng(),
