@@ -17,8 +17,8 @@ class CreateCarpoolsTable extends Migration
             $table->increments('rideId');
             $table->integer('driverID')->unsigned();
             $table->integer('passID')->unsigned()->nullable();
-            $table->foreign('driverID')->references('id')->on('users');
-            $table->foreign('passID')->references('id')->on('users');
+            $table->foreign('driverID')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('passID')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('carpoolDateTime');
             $table->integer('peopleCap');
             $table->integer('peopleCur');

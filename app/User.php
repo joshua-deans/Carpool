@@ -28,7 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function find($id)
-    {
-    }
+//    public static function find($id)
+//    {
+//    }
 }

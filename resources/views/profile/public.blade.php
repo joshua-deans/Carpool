@@ -9,7 +9,7 @@
     @include('inc.messages')
     <div class="container profileHeader">
         <div class="row">
-        {{--<div class="profileHeader">--}}
+            {{--<div class="profileHeader">--}}
             <div class="col-md-5">
                 @if ($user->profilePicture)
                     <img src="{{asset('images/'.$user->profilePicture)}}" class="profilePicture">
@@ -25,41 +25,14 @@
                     ?>
                 </h3>
                 <h3>
-                    Email:
-                    <?php
-                    echo $user->email;
-                    ?>
-                </h3>
-                <h3>
-                    Phone:
-                    <?php
-                    echo $user->phone;
-                    ?>
-                </h3>
-                <h3>
                     About:
                     <?php
                     echo $user->description;
                     ?>
                 </h3>
-                <h3>
-                    Birthday:
-                    <?php
-                    echo $user->birthday;
-                    ?>
-                </h3>
-                <h5>
-                    <a href="{{ url('profile/'.$user->id) }}">My Public Profile</a>
-                </h5>
             </div>
-        {{--</div>--}}
-
         </div>
         <br><br>
-        <div class="row text-center">
-            <a href="profile/edit" class="btn btn-primary btn-lg profileButton">Edit</a>
-            <a href="vehicle" class="btn btn-primary btn-lg ">Driver Status</a>
-        </div>
     </div>
 
     <script
