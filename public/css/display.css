@@ -1,0 +1,35 @@
+body {
+    background-size:cover;
+    background: url('../svg/background.jpg') center;
+    color:white;
+}
+
+.btn{
+    text-decoration: none;
+    background-color: #4885ed;
+    float: left;
+    margin-right: 1%;
+}
+
+.table {
+    border-collapse: collapse;
+}
+#confirm{
+    align-content: right;
+    float:left;
+    margin-right: 2%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color:rgba(0,0,0,0.1);}
+
+.container{
+    margin-top: 50px;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    align-content: center;
+}
