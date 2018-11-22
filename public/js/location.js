@@ -6,8 +6,8 @@ document.getElementById("commute-form-passenger").style.display = "none";
 
 document.getElementById("pass").addEventListener("click", function(){
     if (flag !== "passenger") {
-        document.getElementById("pass").classList.add("active");
-        document.getElementById("driv").classList.remove("active");
+        // document.getElementById("pass").classList.add("active");
+        // document.getElementById("driv").classList.remove("active");
         document.getElementById("commute-form-passenger").style.display = "block";
         document.getElementById("commute-form-driver").style.display = "none";
         flag = "passenger";
@@ -17,8 +17,8 @@ document.getElementById("pass").addEventListener("click", function(){
 
 document.getElementById("driv").addEventListener("click", function(){
     if (flag !== "driver") {
-        document.getElementById("pass").classList.remove("active");
-        document.getElementById("driv").classList.add("active");
+        // document.getElementById("pass").classList.remove("active");
+        // document.getElementById("driv").classList.add("active");
         document.getElementById("commute-form-passenger").style.display = "none";
         document.getElementById("commute-form-driver").style.display = "block";
         flag = "driver";
@@ -28,7 +28,7 @@ document.getElementById("driv").addEventListener("click", function(){
 
 function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form-driver").submit(function (event) {
-        if ($('#driv').classList.contains('active') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+        if ($('#input-origin').val() !== "" && $('#input-dest').val() !== ""
             && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
@@ -49,7 +49,7 @@ function submitDriverEventListener(oriMarker, destMarker) {
 
 function submitPassengerEventListener(oriMarker, destMarker) {
     $("#commute-form-passenger").submit(function (event) {
-        if ($('#pass').classList.contains('active') && $('#input-origin-passenger').val() !== "" && $('#input-dest-passenger').val() !== ""
+        if ($('#input-origin-passenger').val() !== "" && $('#input-dest-passenger').val() !== ""
             && $('#datetimepicker-passenger').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
