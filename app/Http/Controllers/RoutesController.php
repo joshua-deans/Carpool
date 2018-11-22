@@ -114,7 +114,7 @@ class RoutesController extends Controller
     public function update($id)
     {
         $user_id = auth()->user()->id;
-        $route = Route::find($id);
+        $route = Carpool::find($id);
         $route->passID = $user_id;
         $saved = $route->save();
         if ($saved) {

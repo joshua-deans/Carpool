@@ -81,8 +81,8 @@
                                 <th>{{$route->carpoolDateTime}}</th>
                                 <th>{{$driver->phone}}</th>
                                 <th>
-                                    <form action="{{url('RoutesController@update', [$route->rideID])}}" method="POST" >
-                                    <input type="hidden" name="_method" value="PUT">
+                                    <form action="/displayroute/{{$route->rideId}}" method="POST">
+                                        {{--<input type="hidden" name="_method" value="PUT">--}}
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary">Select this Driver</button>
                                     </form>

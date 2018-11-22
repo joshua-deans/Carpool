@@ -29,6 +29,7 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'RoutesController@searchMatches');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/displayroute', 'RoutesController@matching');
+Route::post('/displayroute/{id}', 'RoutesController@update');
 
 
 
