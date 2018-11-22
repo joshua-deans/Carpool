@@ -20,7 +20,7 @@
                 @endforeach
                 {{$driver_routes->links()}}
             @else
-                <div class="well"><h3> No routes found</h3></div>
+                <div class="well"><h3> No routes found</h3><small><br></small></div>
             @endif
         </div>
 
@@ -35,7 +35,7 @@
                 @endforeach
                 {{$passenger_routes->links()}}
             @else
-                <div class="well"><h3> No routes found</h3></div>
+                <div class="well"><h3> No routes found</h3><small><br></small></div>
             @endif
         </div>
     </div>

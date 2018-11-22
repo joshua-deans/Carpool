@@ -24,8 +24,8 @@ class RoutesController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(2, ['*'], 'droutes');
-        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(2, ['*'], 'proutes');
+        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'droutes');
+        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'proutes');
         return view('routes.index')->with('driver_routes',$driver_routes)
                                         ->with('passenger_routes',$passenger_routes)
                                         ->with('user_id',$user_id);

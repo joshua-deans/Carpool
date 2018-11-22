@@ -31,8 +31,6 @@
                     <li class="list-group-item">passenger name:No passenger</li>
                 @endif
 
-                <li class="list-group-item">Capacity:{{$routes->peopleCap}}</li>
-                <li class="list-group-item">Current passengers:{{$routes->peopleCur}}</li>
                 <li class="list-group-item">Location: need to transfer json int to name {{$routes->coords}}</li>
             </ul>
 
