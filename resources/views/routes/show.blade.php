@@ -13,8 +13,8 @@
 
 @section('content')
     @include('inc.navbar_signed_in')
-    <div>
-        <div class="left">
+    <div class="container" style="max-width:750px;">
+        <div class="center">
             <div id="coords" style="display: none;">{{$routes->coords}}</div>
 
             <ul class="list-group">
