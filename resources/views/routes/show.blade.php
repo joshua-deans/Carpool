@@ -22,7 +22,7 @@
                 <li class="list-group-item"><h4>To:</h4><p id="destName"></p></li>
                 <li class="list-group-item">date time:<?php echo date('Y-m-d g:i A',$routes->carpoolDateTime  );?></li>
                 <li class="list-group-item">driver name:{{$driver[0]->name}}</li>
-                <li class="list-group-item"><a href="{{ url('profile/'.$driver->id) }}" class="whiteLink">Driver Profile</a></li>
+                <li class="list-group-item"><a href="{{ url('profile/'.$driver[0]->id) }}" class="whiteLink">Driver Profile</a></li>
                 @if (count($passenger) > 0)
                     <li class="list-group-item">passenger name:{{$passenger[0]->name}}</li>
                 @else
