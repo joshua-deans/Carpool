@@ -92,18 +92,11 @@ function initMap() {
             marker.setMap(map);
             map.setCenter(pos);
         },function(){
-            var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
-                "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
-                "<strong>Error!</strong> Location service is disabled by your browser for this website.\n" +
-                "</div>");
-            $('.alert-container').append($newdiv);
+            console.log("Error! Location service is disabled by your browser for this website.");
+
         });
     } else {
-        var $newdiv = $("<div class=\"alert alert-danger alert-dismissible\">\n" +
-            "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
-            "<strong>Error!</strong> Browser doesn't support Geolocation, we are unable to get your location.\n" +
-            "</div>");
-        $('.alert-container').append($newdiv);
+        console.log("Error! Browser doesn't support geolocation, we are unable to get your location.");
     }
 
 

@@ -29,10 +29,15 @@
                 <h3>Step 1: Choose your Role</h3>
                 <div class="form-group">
                     <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>
-                    <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
+                    @if ($driver == true)
+                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
+                    @else
+                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
+                                                           disabled>Driver</label>
+                    @endif
                 </div>
                 {!!Form::open(['action'=>'RoutesController@matching','id'=>"commute-form-passenger",'method'=>"POST"])!!}
-                    <h3>Step 2: Plan youre commute as a Passenger</h3>
+                <h3>Step 2: Plan Your Commute as a Passenger</h3>
                     <div class="form-group">
                         <input type="text" class="form-control" id="input-origin-passenger" name="origin" placeholder="Origin" required="required">
                     </div>
@@ -48,7 +53,7 @@
                 {!! Form::close() !!}
 
                 {!!Form::open(['action'=>'RoutesController@store','id'=>"commute-form-driver",'method'=>"POST"])!!}
-                <h3>Step 2: Plan youre commute as Driver</h3>
+                <h3>Step 2: Plan Your Commute as a Driver</h3>
                 <div class="form-group">
                     <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin" required="required">
                 </div>
