@@ -39,6 +39,7 @@
             {{Form::hidden('_method', 'delete')}}
             {{Form::button('<i class="fas fa-trash">Delete</i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
             {!! Form::close() !!}
+            <br>
         </div>
     </div>
     <script>
