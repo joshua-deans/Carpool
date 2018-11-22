@@ -9,6 +9,7 @@
 
 @section('content')
     <div class="container">
+        <h2 id="carpool-title">Manage Carpools</h2>
         @if(count($carpools) > 0)
             <table>
                 <tr>
@@ -18,21 +19,21 @@
                     <th>Scheduled Time</th>
                     <th>Action</th>
                 </tr>
-                @foreach($carpools as $carpools)
+                @foreach($carpools as $carpool)
                     <tr>
-                        <td>{{$carpools->rideId}}</td>
-                        <td>{{$driverNames[$carpools->driverID]}}</td>
+                        <td>{{$carpool->rideId}}</td>
+                        <td>{{$driverNames[$carpool->driverID]}}</td>
                         <td>
-                            @if($passengerNames[$carpools->passID] != "")
-                                {{$passengerNames[$carpools->passID]}}
+                            @if($passengerNames[$carpool->passID] != "")
+                                {{$passengerNames[$carpool->passID]}}
                             @else
                                 {{'None'}}
                             @endif
                         </td>
-                        <td>{{$carpools->carpoolDateTime}}</td>
+                        <td>{{$carpool->carpoolDateTime}}</td>
                         <td>
 
-                            {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpools->rideId], 'method' => 'post']) !!}
+                            {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpool->rideId], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
@@ -40,6 +41,7 @@
                     </tr>
                 @endforeach
             </table>
+            {{ $carpools->links() }}
         @else
             <h3>No carpools exist</h3>
         @endif

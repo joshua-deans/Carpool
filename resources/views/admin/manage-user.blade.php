@@ -8,7 +8,16 @@
 @include('inc.navbar_admin')
 
 @section('content')
+
     <div class="container">
+        <h2>Manage Members</h2>
+        <form class="navbar-form navbar-right" id="searchbar" method="get" action="{{URL::to('/members/')}}" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search name" name="search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+
         @if(count($members) > 0)
             <table>
                 <tr>
@@ -18,14 +27,14 @@
                     <th>Birthdate</th>
                     <th>Action</th>
                 </tr>
-                @foreach($members as $members)
+                @foreach($members as $member)
                     <tr>
-                        <td>{{$members->name}}</td>
-                        <td>{{$members->email}}</td>
-                        <td>{{$members->phone}}</td>
-                        <td>{{$members->birthday}}</td>
+                        <td>{{$member->name}}</td>
+                        <td>{{$member->email}}</td>
+                        <td>{{$member->phone}}</td>
+                        <td>{{$member->birthday}}</td>
                         <td>
-                            {!! Form::open(['action' => ['AdminMembersController@destroy', $members->id], 'method' => 'post']) !!}
+                            {!! Form::open(['action' => ['AdminMembersController@destroy', $member->id], 'method' => 'post']) !!}
                                 {{Form::hidden('_method', 'delete')}}
                                 {{Form::button('<i class="fas fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
                             {!! Form::close() !!}
@@ -36,6 +45,7 @@
         @else
             <h3>No members exist</h3>
         @endif
+        {{ $members->links() }}
     </div>
 
 @endsection
