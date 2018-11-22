@@ -131,4 +131,11 @@ class RoutesController extends Controller
         $routes->delete();
         return redirect('/Routes');
     }
+
+
+    public function matching()
+    {
+
+        return view('pages.displayroute');
+    }
 }
