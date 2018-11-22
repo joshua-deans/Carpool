@@ -13,6 +13,7 @@ It is built using the following technologies:
 ## Features:
 * Admin Authentication for preregistered accounts - use username: eric@admin.ca password: eric to test
 * As admin you are able to see current users and carpool sessions
+* As admin you can search for users by name
 * As admin you are able to delete users and carpool sessions
 * User registration and authentication (you are able to register, log in, and sign out)
 * Able to interact with the Google Maps API in the dashboard
