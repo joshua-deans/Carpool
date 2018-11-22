@@ -12,7 +12,7 @@
 
         <ul class="list-group">
             <li class="list-group-item">route id: {{$routes->rideId}}</li>
-            <li class="list-group-item">date time:<?php echo date('Y-m-d H:i A',$routes->carpoolDateTime  );?></li>
+            <li class="list-group-item">date time:<?php echo date('Y-m-d g:i A',$routes->carpoolDateTime  );?></li>
             <li class="list-group-item">driver name:{{$driver->name}}</li>
             @if ($passenger != NULL)
                 <li class="list-group-item">passenger name:{{$passenger->name}}</li>
