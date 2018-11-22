@@ -15,7 +15,6 @@
     @include('inc.navbar_signed_in')
     <div>
         <div class="left">
-            <a href = "/Routes" class = "btn btn-default">Go Back</a>
             <div id="coords" style="display: none;">{{$routes->coords}}</div>
 
             <ul class="list-group">
@@ -29,6 +28,7 @@
                     <li class="list-group-item">passenger name:No passenger</li>
                 @endif
             </ul>
+            <a href = "/Routes" class = "btn btn-default" id="gobackbutton">Go Back</a>
             {!! Form::open(['action' => ['RoutesController@destroy', $routes->rideId], 'method' => 'post']) !!}
             {{Form::hidden('_method', 'delete')}}
             {{Form::button('<i class="fas fa-trash">Delete</i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-md'])}}
