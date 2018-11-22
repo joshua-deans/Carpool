@@ -6,27 +6,38 @@
 @section('php')
     <?php
         function get_distance($coords1,$coords2) {
-
+            $R = 6371;
             $obj1 = json_decode($coords1);
+            $obj2 = json_decode($coords2);
+
             $lon1= $obj1->{'oriLng'};
             $lat1 = $obj1->{'oriLat'};
+            $lon11= $obj1->{'destLng'};
+            $lat11 = $obj1->{'destLat'};
 
-
-            $obj2 = json_decode($coords2);
             $lon2 = $obj2->{'oriLng'};
             $lat2 = $obj2->{'oriLat'};
-            $R = 6371;
+            $lon22 = $obj2->{'destLng'};
+            $lat22 = $obj2->{'destLat'};
 
             $dLat = deg2rad($lat2-$lat1);
             $dLon = deg2rad($lon2-$lon1);
 
-            $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+            $dLat2 = deg2rad($lat22-$lat11);
+            $dLon2 = deg2rad($lon22-$lon11);
+
+            $a1 = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
                 sin($dLon/2) * sin($dLon/2);
 
-            $c = 2 * atan2(sqrt($a), sqrt(1-$a));
-            $d = $R * $c; // Distance in km
+            $a2 = sin($dLat2/2) * sin($dLat2/2) + cos(deg2rad($lat11)) * cos(deg2rad($lat22)) *
+                sin($dLon2/2) * sin($dLon2/2);
 
-            if ($d < 100 && $d >= 0){
+            $c1 = 2 * atan2(sqrt($a1), sqrt(1-$a1));
+            $d1 = $R * $c1; // Distance in km
+            $c2 = 2 * atan2(sqrt($a2), sqrt(1-$a2));
+            $d2 = $R * $c2;
+
+            if ($d1 < 10 && $d1 >= 0 && $d2 < 10 && $d2 >= 0){
                 return 1;
             }
             else{
@@ -38,14 +49,13 @@
 @endsection
 @section('content')
 
-    <tr id="container">
+    <div id="container">
         <h1>Route Matches</h1>
         <br>
         <form method="post" action="">
             <table id="matchTable">
                 <tr>
                     <th>Driver Name</th>
-
                     <th>Start</th>
                     <th>Destination</th>
                     <th>Time</th>
@@ -55,13 +65,21 @@
                 @if (count($routes) > 0)
                     @foreach($routes as $route)
                         @if(get_distance($p_coords,$route->coords)==1)
+                            <?php
+                                $driver = null;
+                                foreach($users as $u) {
+                                    if ($route->driverID == $u->id) {
+                                        $driver = $u;
+                                        break;
+                                    }
+                                }
+                            ?>
                             <tr>
-                                <th>example</th>
-
+                                <th>{{$driver->name}}</th>
                                 <th>SFU</th>
                                 <th>Coquitlam</th>
                                 <th>{{$route->carpoolDateTime}}</th>
-                                <th>604-000-0000</th>
+                                <th>{{$driver->phone}}</th>
                                 <th><label class="selectDriver"><input type="radio" name="slectedDriver"> Select this Driver</label>
                                 </th>
                             </tr>
@@ -82,8 +100,5 @@
                     </div>
                 </form>
             </div>
-
-
-
 
 @endsection
