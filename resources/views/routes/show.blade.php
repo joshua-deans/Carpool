@@ -63,21 +63,6 @@
             })
         }
 
-
-        /*function geocodeLatLng(geocoder) {
-            var latlng = {lat: parseFloat(geocoder[0]), lng: parseFloat(geocoder[1])};
-            geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status === 'OK') {
-                    alert(results[0].formatted_address);
-                }
-                else {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-        }
-        //var origin = document.getElementById("oriName");
-        //use reverse geolocation to find the names of the coords once coords are extracted from the data base;*/
-
     </script>
 
 @endsection
