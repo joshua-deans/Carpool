@@ -126,4 +126,11 @@ class RoutesController extends Controller
     {
         //
     }
+
+
+    public function matching()
+    {
+
+        return view('pages.displayroute');
+    }
 }
