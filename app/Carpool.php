@@ -10,4 +10,8 @@ class Carpool extends Model
     protected $table = 'carpools';
 
     protected  $primaryKey = 'rideId';
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

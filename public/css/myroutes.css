@@ -4,17 +4,17 @@ h1{
 }
 .left{
 
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+
     float:left;
-    width:75%;
+    width: 30%;
     overflow:hidden;
+
 }
 .right{
     margin-left: 10%;
-    margin-right: 10%;
     float:left;
-    width:75%;
+    width: 30%;
     overflow:hidden;
 }
 
@@ -23,9 +23,20 @@ body {
     background: url('../svg/background.jpg') center;
 }
 
-.container{
-    margin-top:3%;
-    padding:20px;
-    color: white;
+.li {
+    color:whitesmoke;
     background: rgba(0,0,0,0.4);
+}
+.show {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.well {
+    color:whitesmoke;
+    background: rgba(0,0,0,0.4);
+}
+
+#gobackbutton{
+    float:left;
+    margin-right: 10px;
 }
