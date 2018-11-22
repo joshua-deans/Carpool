@@ -46,7 +46,13 @@
         }
 
         function match_time($time1,$time2){
-            $d = ($time1  - $time2 )/ 3600;
+            if ($time1 < $time2){
+                $d = ( $time2 - $time1 )/ 3600;
+            }
+            else{
+                $d = ( $time1 - $time2 )/ 3600;
+            }
+
             if ($d <0.5 ){
                 return 1;
             }
@@ -71,11 +77,15 @@
                     <th>Contact</th>
                     <th>Select</th>
                 </tr>
+                <?php
+                    $count=0;
+                ?>
                 @if (count($routes) > 0)
                     @foreach($routes as $route)
                         @if(match_distance($p_coords,$route->coords)==1
                         && match_time($p_time,$route->carpoolDateTime)==1)
                             <?php
+                                $count ++;
                                 $driver = null;
                                 foreach($users as $u) {
                                     if ($route->driverID == $u->id) {
@@ -100,9 +110,17 @@
                             </tr>
                         @endif
                     @endforeach
+                    @if($count == 0)
+                            <tr>
+                                <th>No routes found</th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                            </tr>
 
-                @else
-                        <tr><h3> No routes found</h3></tr>
+                    @endif
                 @endif
                     </table>
 
