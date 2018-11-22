@@ -37,7 +37,7 @@
             $c2 = 2 * atan2(sqrt($a2), sqrt(1-$a2));
             $d2 = $R * $c2;
 
-            if ($d1 < 10 && $d1 >= 0 && $d2 < 10 && $d2 >= 0){
+            if ($d1 < 1 && $d1 >= 0 && $d2 < 1 && $d2 >= 0){
                 return 1;
             }
             else{
@@ -47,7 +47,7 @@
 
         function match_time($time1,$time2){
             $d = ($time1  - $time2 )/ 3600;
-            if ($d <3 ){
+            if ($d <0.5 ){
                 return 1;
             }
             else{
