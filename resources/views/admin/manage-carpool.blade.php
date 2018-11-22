@@ -30,7 +30,7 @@
                                 {{'None'}}
                             @endif
                         </td>
-                        <td>{{$carpool->carpoolDateTime}}</td>
+                        <td>{{ date('Y-m-d g:i A',$carpool->carpoolDateTime  )}}</td>
                         <td>
 
                             {!! Form::open(['action' => ['AdminCarpoolController@destroy', $carpool->rideId], 'method' => 'post']) !!}
