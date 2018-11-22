@@ -7,11 +7,22 @@ It is built using the following technologies:
 * Google Maps API
 * Google Cloud Platform
 
-## Current Features:
-* User authentication (you are able to register, log in, and sign out)
+* https://csil-git1.cs.surrey.sfu.ca/ewtempes/Carpool/
+* Project Name: CarpoolApplication - ID: carpoolapplication-219320
+
+## Features:
+* Admin Authentication for preregistered accounts - use username: eric@admin.ca password: eric to test
+* As admin you are able to see current users and carpool sessions
+* As admin you can search for users by name
+* As admin you are able to delete users and carpool sessions
+* User registration and authentication (you are able to register, log in, and sign out)
 * Able to interact with the Google Maps API in the dashboard
 * Able to use the Google Places API to autocomplete your origin and destination
-* Able to view and edit profile information
+* Able to view and edit profile information, including adding pictures to your account
+* Register as a driver by registering your license and vehicle information
+* Create routes as a driver from your preferred start and end location
+* Users may browse routes that are within range of their starting/ending location
+* Users may sign up for routes based on the returned results
 
 ## Starting the server:
 * Project Name: CarpoolApplication
@@ -28,6 +39,5 @@ It is built using the following technologies:
 
 ## Using the site:
 * Make sure you are using Https
-* go to https://external ip
+* go to https://external ip of webserver3
 * accept the dangers of our self-signed certificate
-* Site should work

@@ -4,11 +4,13 @@
 @endsection
 @include('inc.navbar_signed_in')
 @section('content')
-    <div id="container">
+    <div class="container" style="padding:25px;max-width: 800px;">
+        {{--<div class="row">--}}
         <h1>Route Matches</h1>
         <br>
         <form method="post" action="">
-            <table id="matchTable">
+            <table id="matchTable" class="table align-content-center">
+                <thead>
                 <tr>
                     <th>Driver Name</th>
                     <th>Drive ID</th>
@@ -18,6 +20,8 @@
                     <th>Contact</th>
                     <th>Select</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
                     <th>Example1</th>
                     <th>123</th>
@@ -38,6 +42,7 @@
                     <th><label class="selectDriver"><input type="radio" name="slectedDriver"> Select this Driver</label>
                     </th>
                 </tr>
+                </tbody>
             </table>
             <br>
             <br>
@@ -48,5 +53,6 @@
                 <button class="btn goback" type="submit" action="RoutesController@index">Search Again</button>
             </div>
         </form>
+        {{--</div>--}}
     </div>
 @endsection
