@@ -114,9 +114,17 @@ class RoutesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $user_id = auth()->user()->id;
+        $route = Carpool::find($id);
+        $route->passID = $user_id;
+        $saved = $route->save();
+        if ($saved) {
+            return redirect('/dashboard')->with('success', 'Route was successfully joined.');
+        } else {
+            return redirect('/dashboard')->with('error', 'Route could not be joined.');
+        }
     }
 
     /**
@@ -133,9 +141,18 @@ class RoutesController extends Controller
     }
 
 
-    public function matching()
+    public function matching(Request $request)
     {
+        $time = $request->input('time');
+        $coords = $request->input('locJSON');
+        $routes = Carpool::where('passID',NULL)->get();
+        $users = User::all();
 
-        return view('pages.displayroute');
+        return view('pages.displayroute')
+                ->with('time',$time)
+                ->with('routes',$routes)
+                ->with('p_coords', $coords)
+                ->with('users', $users);
     }
 }
+
