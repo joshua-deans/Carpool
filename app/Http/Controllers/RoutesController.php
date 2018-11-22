@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Carpool;
 use App\User;
+use App\Driver;
 
 
 class RoutesController extends Controller
@@ -23,8 +24,8 @@ class RoutesController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(2);
-        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(2);
+        $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'droutes');
+        $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'proutes');
         return view('routes.index')->with('driver_routes',$driver_routes)
                                         ->with('passenger_routes',$passenger_routes)
                                         ->with('user_id',$user_id);
@@ -84,13 +85,14 @@ class RoutesController extends Controller
     public function show($id)
     {
         $routes = Carpool::find($id);
-        $passenger = User::find($routes->passID);
-        $driver = User::find($routes->driverID);
+        $passenger = User::where('id',$routes->passID)->get();
+        $driver = User::where('id',$routes->driverID)->get();
+        $driver_detail = Driver::where('id',$routes->driverID)->get();
         return view('routes.show')
             ->with('routes',$routes)
             ->with('passenger',$passenger)
-            ->with('driver',$driver);
-
+            ->with('driver',$driver)
+            ->with('driver_detail',$driver_detail);
     }
 
     /**
@@ -101,7 +103,8 @@ class RoutesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $routes = Carpool::find($id);
+        return view('routes.edit')->with('routes',$routes);
     }
 
     /**
@@ -132,7 +135,9 @@ class RoutesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $routes = Carpool::find($id);
+        $routes->delete();
+        return redirect('/Routes');
     }
 
 
@@ -144,7 +149,7 @@ class RoutesController extends Controller
         $users = User::all();
 
         return view('pages.displayroute')
-                ->with('time',$time)
+                ->with('p_time',$time)
                 ->with('routes',$routes)
                 ->with('p_coords', $coords)
                 ->with('users', $users);

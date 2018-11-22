@@ -5,7 +5,7 @@
 @include('inc.navbar_signed_in')
 @section('php')
     <?php
-        function get_distance($coords1,$coords2) {
+        function match_distance($coords1,$coords2) {
             $R = 6371;
             $obj1 = json_decode($coords1);
             $obj2 = json_decode($coords2);
@@ -37,7 +37,17 @@
             $c2 = 2 * atan2(sqrt($a2), sqrt(1-$a2));
             $d2 = $R * $c2;
 
-            if ($d1 < 10 && $d1 >= 0 && $d2 < 10 && $d2 >= 0){
+            if ($d1 < 1 && $d1 >= 0 && $d2 < 1 && $d2 >= 0){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+
+        function match_time($time1,$time2){
+            $d = ($time1  - $time2 )/ 3600;
+            if ($d <0.5 ){
                 return 1;
             }
             else{
@@ -52,7 +62,6 @@
     <div class="container" style="padding: 20px;max-width: 800px;">
         <h1>Route Matches</h1>
         <br>
-
             <table id="matchTable">
                 <tr>
                     <th>Driver Name</th>
@@ -64,7 +73,8 @@
                 </tr>
                 @if (count($routes) > 0)
                     @foreach($routes as $route)
-                        @if(get_distance($p_coords,$route->coords)==1)
+                        @if(match_distance($p_coords,$route->coords)==1
+                        && match_time($p_time,$route->carpoolDateTime)==1)
                             <?php
                                 $driver = null;
                                 foreach($users as $u) {
@@ -78,7 +88,7 @@
                                 <th>{{$driver->name}}</th>
                                 <th>SFU</th>
                                 <th>Coquitlam</th>
-                                <th>{{$route->carpoolDateTime}}</th>
+                                <th><?php echo date('Y-m-d g:i A',$route->carpoolDateTime  );?></th>
                                 <th>{{$driver->phone}}</th>
                                 <th>
                                     <form action="/displayroute/{{$route->rideId}}" method="POST">
@@ -95,14 +105,6 @@
                         <tr><h3> No routes found</h3></tr>
                 @endif
                     </table>
-                    <br>
-                    <br>
-                    <div id="confirm">
-                        <button class="btn confirm" type="submit" action="RoutesController@index">Confirm</button>
-                    </div>
-                    <div id="button">
-                        <button class="btn goback" type="submit" action="RoutesController@index">Search Again</button>
-                    </div>
 
             </div>
 
