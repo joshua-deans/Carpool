@@ -57,8 +57,9 @@ class ProfileController extends Controller
 
     public function getPublic($id){
         $user = User::find($id);
+        $driver = Driver::find($id);
         if ($user){
-            return view('profile.public')->with('user', $user);
+            return view('profile.public')->with('user', $user)->with('driver', $driver);
         } else{
             abort(404);
         }
