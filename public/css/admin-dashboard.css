@@ -33,6 +33,19 @@ th {
     color: white;
 }
 
+h2 {
+    font-family: "Arial Black", Gadget, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#carpool-title {
+    margin-bottom: 30px;
+}
+
+#searchbar {
+    margin-top: 0;
+}
 
 
 

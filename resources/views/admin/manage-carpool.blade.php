@@ -9,6 +9,7 @@
 
 @section('content')
     <div class="container">
+        <h2 id="carpool-title">Manage Carpools</h2>
         @if(count($carpools) > 0)
             <table>
                 <tr>

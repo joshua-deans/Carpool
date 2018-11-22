@@ -10,7 +10,8 @@
 @section('content')
 
     <div class="container">
-        <form class="navbar-form navbar-right" method="get" action="{{URL::to('/members/')}}" role="search">
+        <h2>Manage Members</h2>
+        <form class="navbar-form navbar-right" id="searchbar" method="get" action="{{URL::to('/members/')}}" role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search name" name="search">
             </div>
@@ -41,10 +42,10 @@
                     </tr>
                 @endforeach
             </table>
-            {{ $members->links() }}
         @else
             <h3>No members exist</h3>
         @endif
+        {{ $members->links() }}
     </div>
 
 @endsection
