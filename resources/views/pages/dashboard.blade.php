@@ -31,18 +31,13 @@
         <div class="row">
             <div class="col-sm-4">
                 <h3>Step 1: Choose your Role</h3>
-                <div class="form-group text-center">
-                    <button type="button" id="pass" style="margin-right: 25px;width:120px;" class="btn btn-default">
-                        Passenger
-                    </button>
+                <div class="form-group">
+                    <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>
                     @if ($driver == true)
-                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default">
-                            Driver
-                        </button>
+                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
                     @else
-                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default"
-                                disabled="disabled">Driver
-                        </button>
+                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
+                                                           disabled>Driver</label>
                     @endif
                     {{--<label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>--}}
                     {{--@if ($driver == true)--}}
