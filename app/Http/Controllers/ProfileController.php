@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Driver;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
@@ -15,7 +16,13 @@ class ProfileController extends Controller
 
     public function index(){
         $user = auth()->user();
-        return view('profile.profile')->with('user', $user);
+        $driver = Driver::where('id', $user->id)->count();
+        if ($driver <= 0) {
+            return view('profile.profile')->with('user', $user)->with('driver', false);
+        } else {
+            return view('profile.profile')->with('user', $user)->with('driver', true);
+        }
+
     }
 
     public function edit(){
@@ -52,8 +59,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         if ($user){
             return view('profile.public')->with('user', $user);
-        }
-        else{
+        } else{
             abort(404);
         }
     }
