@@ -28,7 +28,10 @@
                 </li>
                 @if (count($passenger) > 0)
                     <li class="list-group-item"><h4>Passenger Name:</h4>
-                        <p>{{$passenger[0]->name}}</p></li>
+                        <p>{{$passenger[0]->name}}</p>
+                        <a href="{{ url('profile/'.$passenger[0]->id) }}" class="whiteLink">Passenger Profile</a>
+                    </li>
+
                 @else
                     <li class="list-group-item"><h4>Passenger Name:</h4>
                         <p>No passenger</p></li>
