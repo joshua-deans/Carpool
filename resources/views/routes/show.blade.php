@@ -22,8 +22,6 @@
                 <li class="list-group-item">passenger name: Not Found</li>
             @endif
 
-            <li class="list-group-item">Capacity:{{$routes->peopleCap}}</li>
-            <li class="list-group-item">Current passengers:{{$routes->peopleCur}}</li>
             <li class="list-group-item">Location:{{$routes->coords}}</li>
         </ul>
     </div>

@@ -62,7 +62,6 @@
     <div class="container" style="padding: 20px;max-width: 800px;">
         <h1>Route Matches</h1>
         <br>
-
             <table id="matchTable">
                 <tr>
                     <th>Driver Name</th>
@@ -106,14 +105,6 @@
                         <tr><h3> No routes found</h3></tr>
                 @endif
                     </table>
-                    <br>
-                    <br>
-                    <div id="confirm">
-                        <button class="btn confirm" type="submit" action="RoutesController@index">Confirm</button>
-                    </div>
-                    <div id="button">
-                        <button class="btn goback" type="submit" action="RoutesController@index">Search Again</button>
-                    </div>
 
             </div>
 
