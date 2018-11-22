@@ -149,7 +149,7 @@ class RoutesController extends Controller
         $users = User::all();
 
         return view('pages.displayroute')
-                ->with('time',$time)
+                ->with('p_time',$time)
                 ->with('routes',$routes)
                 ->with('p_coords', $coords)
                 ->with('users', $users);
