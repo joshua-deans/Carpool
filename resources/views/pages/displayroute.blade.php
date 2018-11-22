@@ -84,7 +84,7 @@
         }
         function get_name(a) {
             var b1 =  "oriName";
-            var b2 =  "oriName";
+            var b2 =  "destName";
             var c = a.toString();
             var d1 = b1.concat(c);
             var d2 = b2.concat(c);
