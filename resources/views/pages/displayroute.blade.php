@@ -89,7 +89,7 @@
                                 <th>{{$driver->name}}</th>
                                 <th>SFU</th>
                                 <th>Coquitlam</th>
-                                <th><?php echo date('Y-m-d H:i:s',$route->carpoolDateTime  );?></th>
+                                <th><?php echo date('Y-m-d H:i A',$route->carpoolDateTime  );?></th>
                                 <th>{{$driver->phone}}</th>
                                 <th>
                                     <form action="/displayroute/{{$route->rideId}}" method="POST">
