@@ -62,7 +62,6 @@
     <div class="container" style="padding: 20px;max-width: 800px;">
         <h1>Route Matches</h1>
         <br>
-
             <table id="matchTable">
                 <tr>
                     <th>Driver Name</th>
