@@ -5,7 +5,7 @@
 @include('inc.navbar_signed_in')
 @section('php')
     <?php
-        function get_distance($coords1,$coords2) {
+        function match_distance($coords1,$coords2) {
             $R = 6371;
             $obj1 = json_decode($coords1);
             $obj2 = json_decode($coords2);
@@ -43,6 +43,16 @@
             else{
                 return 0;
             }
+        }
+
+        function match_time($time1,$time2){
+            $d = ($time1  - $time2 )/ 3600;
+            if ($d <3 ){
+                return 1;
+            }
+            else{
+                return 0;
+            }
 
         }
     ?>
@@ -64,7 +74,8 @@
                 </tr>
                 @if (count($routes) > 0)
                     @foreach($routes as $route)
-                        @if(get_distance($p_coords,$route->coords)==1)
+                        @if(match_distance($p_coords,$route->coords)==1
+                        && match_time($p_time,$route->carpoolDateTime)==1)
                             <?php
                                 $driver = null;
                                 foreach($users as $u) {
@@ -78,7 +89,7 @@
                                 <th>{{$driver->name}}</th>
                                 <th>SFU</th>
                                 <th>Coquitlam</th>
-                                <th>{{$route->carpoolDateTime}}</th>
+                                <th><?php echo date('Y-m-d H:i:s',$route->carpoolDateTime  );?></th>
                                 <th>{{$driver->phone}}</th>
                                 <th>
                                     <form action="/displayroute/{{$route->rideId}}" method="POST">
