@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('stylesheet')
     <link href="{{ asset('css/display.css') }}" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 @endsection
 @include('inc.navbar_signed_in')
+
 @section('php')
     <?php
         function match_distance($coords1,$coords2) {
@@ -46,7 +48,13 @@
         }
 
         function match_time($time1,$time2){
-            $d = ($time1  - $time2 )/ 3600;
+            if ($time1 < $time2){
+                $d = ( $time2 - $time1 )/ 3600;
+            }
+            else{
+                $d = ( $time1 - $time2 )/ 3600;
+            }
+
             if ($d <0.5 ){
                 return 1;
             }
@@ -58,7 +66,41 @@
     ?>
 @endsection
 @section('content')
+    <script>
+        function geocode(start, divID){
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+                params:{
+                    latlng:start,
+                    key: 'AIzaSyCgBuOiCTu4lSCitAlk-YxtZ_Aw6KRIqxU'
+                }
+            })
+                .then(function(response){
+                    document.getElementById(divID).innerHTML=
+                        response.data.results[0].formatted_address;
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+        }
+        function get_name(a) {
+            var b1 =  "oriName";
+            var b2 =  "oriName";
+            var c = a.toString();
+            var d1 = b1.concat(c);
+            var d2 = b2.concat(c);
+            var coordJSON = document.getElementById(c).textContent;
+            var oricoords = JSON.parse(coordJSON);
+            var oriLat = oricoords.oriLat;
+            var oriLng = oricoords.oriLng;
+            var destLat = oricoords.destLat;
+            var destLng = oricoords.destLng;
+            var oriString = oriLat + ',' + oriLng;
+            var destString = destLat + ',' + destLng;
+            geocode(oriString,d1);
+            geocode(destString,d2);
+        }
 
+    </script>
     <div class="container" style="padding: 20px;max-width: 800px;">
         <h1>Route Matches</h1>
         <br>
@@ -71,11 +113,16 @@
                     <th>Contact</th>
                     <th>Select</th>
                 </tr>
+                <?php
+                    $count=0;
+                ?>
                 @if (count($routes) > 0)
                     @foreach($routes as $route)
                         @if(match_distance($p_coords,$route->coords)==1
                         && match_time($p_time,$route->carpoolDateTime)==1)
                             <?php
+                                echo "<script>c++;</script>";
+                                $count ++;
                                 $driver = null;
                                 foreach($users as $u) {
                                     if ($route->driverID == $u->id) {
@@ -84,15 +131,17 @@
                                     }
                                 }
                             ?>
+
+                            <div id="<?php echo $count?>" style="display: none;">{{$route->coords}}</div>
                             <tr>
                                 <th>{{$driver->name}}</th>
-                                <th>SFU</th>
-                                <th>Coquitlam</th>
+                                <th id="oriName<?php echo $count?>"></th>
+                                <th id="destName<?php echo $count?>"></th>
+                                <script>get_name(<?php echo $count?>);</script>
                                 <th><?php echo date('Y-m-d g:i A',$route->carpoolDateTime  );?></th>
                                 <th>{{$driver->phone}}</th>
                                 <th>
                                     <form action="/displayroute/{{$route->rideId}}" method="POST">
-                                        {{--<input type="hidden" name="_method" value="PUT">--}}
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary">Select this Driver</button>
                                     </form>
@@ -100,9 +149,16 @@
                             </tr>
                         @endif
                     @endforeach
-
-                @else
-                        <tr><h3> No routes found</h3></tr>
+                    @if($count == 0)
+                            <tr>
+                                <th>No routes found</th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                                <th><br></th>
+                            </tr>
+                    @endif
                 @endif
                     </table>
 

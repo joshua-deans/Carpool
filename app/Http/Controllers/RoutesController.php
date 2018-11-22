@@ -26,9 +26,11 @@ class RoutesController extends Controller
         $user_id = auth()->user()->id;
         $driver_routes = Carpool::where('driverID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'droutes');
         $passenger_routes = Carpool::where('passID',$user_id)->orderBy('carpoolDateTime')->paginate(3, ['*'], 'proutes');
+        $users = User::all();
         return view('routes.index')->with('driver_routes',$driver_routes)
                                         ->with('passenger_routes',$passenger_routes)
-                                        ->with('user_id',$user_id);
+                                        ->with('user_id',$user_id)
+                                        ->with('users',$users);
     }
 
     public function searchMatches()
