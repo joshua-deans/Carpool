@@ -33,6 +33,68 @@
             </div>
         </div>
         <br><br>
+
+        @if($driver)
+            <div class="row">
+                    <div class="col-md-5">
+                        @if ($driver->picture)
+                            <img src="{{asset('images/'.$driver->picture)}}" class="profilePicture">
+                        @else
+                            <img src="{{URL::asset('imgs/emptyProfile.jpg')}}" class="profilePicture">
+                        @endif
+                    </div>
+                    <div class="profileNameInfo col-md-7">
+                        <h3>
+                            License Status:
+                            <?php
+                            echo $driver->licenseStatus;
+                            ?>
+                        </h3>
+                        <h3>
+                            Name:
+                            <?php
+                            echo $driver->vehicleName;
+                            ?>
+                        </h3>
+                        <h3>
+                            Make:
+                            <?php
+                            echo $driver->make;
+                            ?>
+                        </h3>
+                        <h3>
+                            model:
+                            <?php
+                            echo $driver->model;
+                            ?>
+                        </h3>
+                        <h3>
+                            Color:
+                            <?php
+                            echo $driver->color;
+                            ?>
+                        </h3>
+                        <h3>
+                            Year:
+                            <?php
+                            echo $driver->year;
+                            ?>
+                        </h3>
+                        <h3>
+                            Seats:
+                            <?php
+                            echo $driver->seats;
+                            ?>
+                        </h3>
+                        <h3>
+                            Description:
+                            <?php
+                            echo $driver->description;
+                            ?>
+                        </h3>
+
+                    </div>
+        @endif
     </div>
 
     <script
