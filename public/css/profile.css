@@ -25,3 +25,12 @@ body {
     color: white;
     background: rgba(0,0,0,0.4);
 }
+
+.whiteLink {
+    color:white;
+    text-decoration: white underline;
+}
+
+.whiteLink:hover{
+    color: black;
+}
