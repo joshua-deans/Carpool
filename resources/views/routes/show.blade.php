@@ -14,7 +14,9 @@
             <li class="list-group-item">route id: {{$routes->rideId}}</li>
             <li class="list-group-item">date time:{{$routes->carpoolDateTime}}</li>
             <li class="list-group-item">driver name:{{$driver->name}}</li>
-            <li class="list-group-item">passenger name:{{$passenger->name}}</li>
+            @if ($passenger)
+                <li class="list-group-item">passenger name:{{$passenger->name}}</li>
+            @endif
             <li class="list-group-item">Capacity:{{$routes->peopleCap}}</li>
             <li class="list-group-item">Current passengers:{{$routes->peopleCur}}</li>
             <li class="list-group-item">Location:{{$routes->coords}}</li>
