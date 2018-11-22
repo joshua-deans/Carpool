@@ -128,9 +128,19 @@ class RoutesController extends Controller
     }
 
 
-    public function matching()
+    public function matching(Request $request)
     {
+        $time = $request->input('time');
+        $coords = $request->input('locJSON');
+        $routes = Carpool::where('passID',NULL)->get();
+        $users = User::all();
 
-        return view('pages.displayroute');
+
+        return view('pages.displayroute')
+                ->with('time',$time)
+                ->with('routes',$routes)
+                ->with('p_coords', $coords)
+                ->with('users', $users);
     }
 }
+

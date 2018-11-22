@@ -41,8 +41,8 @@ function submitDriverEventListener(oriMarker, destMarker) {
 
 function submitPassengerEventListener(oriMarker, destMarker) {
     $("#commute-form-passenger").submit(function (event) {
-        if ($('#pass').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
-            && $('#datetimepicker').val() !== "") {
+        if ($('#pass').is(':checked') && $('#input-origin-passenger').val() !== "" && $('#input-dest-passenger').val() !== ""
+            && $('#datetimepicker-passenger').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
                 oriLat: oriMarker.position.lat(),
@@ -60,6 +60,8 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                     "_method": 'POST',
                     "_token": token
                 })
+        } else {
+            event.preventDefault();
         }
     });
 }
