@@ -14,8 +14,10 @@
             <li class="list-group-item">route id: {{$routes->rideId}}</li>
             <li class="list-group-item">date time:{{$routes->carpoolDateTime}}</li>
             <li class="list-group-item">driver name:{{$driver->name}}</li>
+            <li class="list-group-item"><a href="{{ url('profile/'.$driver->id) }}" class="whiteLink">Driver Profile</a></li>
             @if ($passenger != NULL)
                 <li class="list-group-item">passenger name:{{$passenger->name}}</li>
+                <li class="list-group-item"><a href="{{ url('profile/'.$passenger->id) }}" class="whiteLink">Passenger Profile</a></li>
             @else
                 <li class="list-group-item">passenger name: Not Found</li>
             @endif
