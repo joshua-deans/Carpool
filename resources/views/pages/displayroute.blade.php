@@ -49,7 +49,7 @@
 @endsection
 @section('content')
 
-    <div id="container">
+    <div class="container" style="padding: 20px;max-width: 800px;">
         <h1>Route Matches</h1>
         <br>
         <form method="post" action="">
