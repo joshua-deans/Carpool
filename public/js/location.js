@@ -5,6 +5,8 @@ document.getElementById("commute-form-passenger").style.display = "none";
 
 
 document.getElementById("pass").addEventListener("click", function(){
+    document.getElementById("pass").classList.add("active");
+    document.getElementById("driv").classList.remove("active");
     document.getElementById("commute-form-passenger").style.display = "block";
     document.getElementById("commute-form-driver").style.display = "none";
     flag = "passenger";
@@ -12,6 +14,8 @@ document.getElementById("pass").addEventListener("click", function(){
 });
 
 document.getElementById("driv").addEventListener("click", function(){
+    document.getElementById("pass").classList.remove("active");
+    document.getElementById("driv").classList.add("active");
     document.getElementById("commute-form-passenger").style.display = "none";
     document.getElementById("commute-form-driver").style.display = "block";
     flag = "driver";
