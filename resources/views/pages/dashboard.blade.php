@@ -31,16 +31,16 @@
         <div class="row">
             <div class="col-sm-4">
                 <h3>Step 1: Choose your Role</h3>
-                <div class="form-group text-center">
-                    <button type="button" id="pass" style="margin-right: 25px;width:120px;" class="btn btn-default">
+                <div class="form-group">
+                    <button type="button" id="pass" style="margin-right: 5px;width:90px;" class="btn btn-default">
                         Passenger
                     </button>
                     @if ($driver == true)
-                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default">
+                        <button type="button" style="margin-left: 5px;width:90px;" id="driv" class="btn btn-default">
                             Driver
                         </button>
                     @else
-                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default"
+                        <button type="button" style="margin-left: 5px;width:90px;" id="driv" class="btn btn-default"
                                 disabled="disabled">Driver
                         </button>
                     @endif

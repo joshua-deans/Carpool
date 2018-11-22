@@ -5,26 +5,30 @@ document.getElementById("commute-form-passenger").style.display = "none";
 
 
 document.getElementById("pass").addEventListener("click", function(){
-    document.getElementById("pass").classList.add("active");
-    document.getElementById("driv").classList.remove("active");
-    document.getElementById("commute-form-passenger").style.display = "block";
-    document.getElementById("commute-form-driver").style.display = "none";
-    flag = "passenger";
-    initMap();
+    if (flag !== "passenger") {
+        document.getElementById("pass").classList.add("active");
+        document.getElementById("driv").classList.remove("active");
+        document.getElementById("commute-form-passenger").style.display = "block";
+        document.getElementById("commute-form-driver").style.display = "none";
+        flag = "passenger";
+        initMap();
+    }
 });
 
 document.getElementById("driv").addEventListener("click", function(){
-    document.getElementById("pass").classList.remove("active");
-    document.getElementById("driv").classList.add("active");
-    document.getElementById("commute-form-passenger").style.display = "none";
-    document.getElementById("commute-form-driver").style.display = "block";
-    flag = "driver";
-    initMap();
+    if (flag !== "driver") {
+        document.getElementById("pass").classList.remove("active");
+        document.getElementById("driv").classList.add("active");
+        document.getElementById("commute-form-passenger").style.display = "none";
+        document.getElementById("commute-form-driver").style.display = "block";
+        flag = "driver";
+        initMap();
+    }
 });
 
 function submitDriverEventListener(oriMarker, destMarker) {
     $("#commute-form-driver").submit(function (event) {
-        if ($('#driv').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+        if ($('#driv').classList.contains('active') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
             && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
@@ -32,12 +36,12 @@ function submitDriverEventListener(oriMarker, destMarker) {
                 destLng: destMarker.position.lng(),
                 destLat: destMarker.position.lat()
             };
-            //alert("'"+JSON.stringify(locationJson)+"'");
             var driverCoords = JSON.stringify(locationJson);
             $(this).append('<input id="actualLocation-driver" type="hidden" name="locJSON"/>');
             document.getElementById("actualLocation-driver").value = driverCoords;
         }
         else {
+            console.log("Driver send prevented");
             event.preventDefault();
         }
     });
@@ -45,7 +49,7 @@ function submitDriverEventListener(oriMarker, destMarker) {
 
 function submitPassengerEventListener(oriMarker, destMarker) {
     $("#commute-form-passenger").submit(function (event) {
-        if ($('#pass').is(':checked') && $('#input-origin-passenger').val() !== "" && $('#input-dest-passenger').val() !== ""
+        if ($('#pass').classList.contains('active') && $('#input-origin-passenger').val() !== "" && $('#input-dest-passenger').val() !== ""
             && $('#datetimepicker-passenger').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
@@ -65,6 +69,7 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                     "_token": token
                 })
         } else {
+            console.log("Passenger send prevented");
             event.preventDefault();
         }
     });
