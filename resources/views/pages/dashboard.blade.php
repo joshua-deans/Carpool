@@ -30,27 +30,58 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <h3>Plan your Commute!</h3>
-                {!!Form::open(['action'=>'RoutesController@store','id'=>"commute-form",'method'=>"POST"])!!}
+                <h3>Step 1: Choose your Role</h3>
+                <div class="form-group text-center">
+                    <button type="button" id="pass" style="margin-right: 25px;width:120px;" class="btn btn-default">
+                        Passenger
+                    </button>
+                    @if ($driver == true)
+                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default">
+                            Driver
+                        </button>
+                    @else
+                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default"
+                                disabled="disabled">Driver
+                        </button>
+                    @endif
+                    {{--<label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>--}}
+                    {{--@if ($driver == true)--}}
+                    {{--<label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>--}}
+                    {{--@else--}}
+                    {{--<label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"--}}
+                    {{--disabled>Driver</label>--}}
+                    {{--@endif--}}
+                </div>
+                {!!Form::open(['action'=>'RoutesController@matching','id'=>"commute-form-passenger",'method'=>"POST"])!!}
+                <h3>Step 2: Plan Your Commute as a Passenger</h3>
                     <div class="form-group">
-                        {{ Form::text('origin', '', ['class'=>'form-control', 'id'=>'input-origin', 'placeholder'=>'Origin', 'required'=>''])  }}
+                        <input type="text" class="form-control" id="input-origin-passenger" name="origin" placeholder="Origin" required="required">
                     </div>
                     <div class="form-group">
-                        {{ Form::text('destination', '', ['class'=>'form-control', 'id'=>'input-dest', 'placeholder'=>'Destination', 'required'=>''])  }}
+                        <input type="text" class="form-control" id="input-dest-passenger" name="destination"
+                               placeholder="Destination" required="required">
                     </div>
                     <div class="form-group">
-                        {{ Form::text('time', '', ['class'=>'form-control', 'id'=>'datetimepicker', 'placeholder'=>'Departure Time', 'required'=>''])  }}
+                        <input type='text' class="form-control" id='datetimepicker-passenger' name="time"
+                               placeholder="Departure Time" required="required">
                     </div>
-                    <div class="form-group">
-                        <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger" checked>Passenger</label>
-                        @if($driver == true)
-                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
-                        @else
-                            <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
-                                                               disabled>Driver</label>
-                        @endif
-                    </div>
-                <button type="button" class="btn btn-primary" id="submitChange">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submitChange-passenger">Submit</button>
+                {!! Form::close() !!}
+
+                {!!Form::open(['action'=>'RoutesController@store','id'=>"commute-form-driver",'method'=>"POST"])!!}
+                <h3>Step 2: Plan Your Commute as a Driver</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="input-origin" name="origin" placeholder="Origin" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="input-dest" name="destination"
+                           placeholder="Destination" required="required">
+                </div>
+                <div class="form-group">
+                    <input type='text' class="form-control" id='datetimepicker' name="time"
+                           placeholder="Departure Time" required="required">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitChange">Submit</button>
                 {!! Form::close() !!}
                 <br>
             </div>
@@ -60,44 +91,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="route" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Matching Routes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @if (count($routes)>0)
-                        @foreach($routes as $route)
-                            <div class="popwindow">
-                                <h3><a href="/Routes/{{$route->rideID}}">route id: {{$route->rideID}}</a></h3>
-                                <small>date time:{{$route->carpoolDateTime}}</small>
-                            </div>
-                        @endforeach
-                        {{$routes->links()}}
-                    @else
-                        <div class="popwindow"><p>No routes found</p></div>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        const fp = flatpickr("#datetimepicker", {
-            enableTime: true,
-            altInput: true,
-            altFormat: "F j, Y h:i K",
-            minDate: "today",
-            dateFormat: "U"
-        });
-    </script>
     <script src="{{ asset('js/location.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?v=weekly&key=
 AIzaSyC_EIWb_yAvbLmnjYU4qHxvzWlcGKU-jeA&libraries=places&callback=initMap"></script>

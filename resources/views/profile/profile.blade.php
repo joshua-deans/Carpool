@@ -49,7 +49,7 @@
                     ?>
                 </h3>
                 <h5>
-                    <a href="{{ url('profile/'.$user->id) }}">My Public Profile</a>
+                    <a href="{{ url('profile/'.$user->id) }}" class="whiteLink">My Public Profile</a>
                 </h5>
             </div>
         {{--</div>--}}
