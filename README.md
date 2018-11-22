@@ -20,7 +20,8 @@ It is built using the following technologies:
 * Able to view and edit profile information, including adding pictures to your account
 * Register as a driver by registering your license and vehicle information
 * Create routes as a driver from your preferred start and end location
-* Browse and register for routes as a passenger that are within range of your starting/ending location
+* Users may browse routes that are within range of their starting/ending location
+* Users may sign up for routes based on the returned results
 
 ## Starting the server:
 * Project Name: CarpoolApplication
