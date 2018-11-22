@@ -52,7 +52,7 @@
     <div id="container">
         <h1>Route Matches</h1>
         <br>
-        <form method="post" action="">
+
             <table id="matchTable">
                 <tr>
                     <th>Driver Name</th>
@@ -80,7 +80,12 @@
                                 <th>Coquitlam</th>
                                 <th>{{$route->carpoolDateTime}}</th>
                                 <th>{{$driver->phone}}</th>
-                                <th><label class="selectDriver"><input type="radio" name="slectedDriver"> Select this Driver</label>
+                                <th>
+                                    <form action="{{url('RoutesController@update', [$route->rideID])}}" method="POST" >
+                                    <input type="hidden" name="_method" value="PUT">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-primary">Select this Driver</button>
+                                    </form>
                                 </th>
                             </tr>
                         @endif
@@ -98,7 +103,7 @@
                     <div id="button">
                         <button class="btn goback" type="submit" action="RoutesController@index">Search Again</button>
                     </div>
-                </form>
+
             </div>
 
 @endsection
