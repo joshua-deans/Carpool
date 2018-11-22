@@ -15,6 +15,7 @@
     <div>
         <div class="left">
             <a href = "/Routes" class = "btn btn-default">Go Back</a>
+            <div id="coords" style="display: none;">{{$routes->coords}}</div>
             <h1> start: </h1>
             <p id="oriName"></p>
             <h1> end: </h1>
@@ -41,8 +42,40 @@
         </div>
     </div>
     <script>
-        var destination = document.getElementById("destName");
-        var origin = document.getElementById("oriName");
+        var coordJSON = document.getElementById("coords").textContent;
+        var Oricoords = JSON.parse(coordJSON);
+        var oriLat = coordJSON.oriLat;
+        var oriLng = coordJSON.oriLng;
+        var destLat = coordJSON.destLat;
+        var destLng = coordJSON.destLng;
+        var oriString = oriLat + ',' + oriLng;
+        var destString = destLat + ',' + destLng;
+
+        function geocodeLatLng(geocoder) {
+            var input = document.getElementById('latlng').value;
+            var latlngStr = input.split(',', 2);
+            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        map.setZoom(11);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map
+                        });
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+        //var origin = document.getElementById("oriName");
         //use reverse geolocation to find the names of the coords once coords are extracted from the data base;
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?v=weekly&key=
+AIzaSyC_EIWb_yAvbLmnjYU4qHxvzWlcGKU-jeA&libraries=places&callback=geocodeLatLng"></script>
 @endsection
