@@ -31,14 +31,26 @@
         <div class="row">
             <div class="col-sm-4">
                 <h3>Step 1: Choose your Role</h3>
-                <div class="form-group">
-                    <label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>
+                <div class="form-group text-center">
+                    <button type="button" id="pass" style="margin-right: 25px;width:120px;" class="btn btn-default">
+                        Passenger
+                    </button>
                     @if ($driver == true)
-                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>
+                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default">
+                            Driver
+                        </button>
                     @else
-                        <label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"
-                                                           disabled>Driver</label>
+                        <button type="button" style="margin-left: 25px;width:120px;" id="driv" class="btn btn-default"
+                                disabled="disabled">Driver
+                        </button>
                     @endif
+                    {{--<label class="radio-inline"><input id="pass" type="radio" name="userType" value="passenger">Passenger</label>--}}
+                    {{--@if ($driver == true)--}}
+                    {{--<label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver">Driver</label>--}}
+                    {{--@else--}}
+                    {{--<label class="radio-inline"><input id="driv" type="radio" name="userType" value="driver"--}}
+                    {{--disabled>Driver</label>--}}
+                    {{--@endif--}}
                 </div>
                 {!!Form::open(['action'=>'RoutesController@matching','id'=>"commute-form-passenger",'method'=>"POST"])!!}
                 <h3>Step 2: Plan Your Commute as a Passenger</h3>
