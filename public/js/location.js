@@ -1,24 +1,57 @@
 var map;
+var flag = "";
+document.getElementById("commute-form-driver").style.display = "none";
+document.getElementById("commute-form-passenger").style.display = "none";
+
+
+document.getElementById("pass").addEventListener("click", function(){
+    document.getElementById("commute-form-passenger").style.display = "block";
+    document.getElementById("commute-form-driver").style.display = "none";
+    flag = "passenger";
+    initMap();
+});
+
+document.getElementById("driv").addEventListener("click", function(){
+    document.getElementById("commute-form-passenger").style.display = "none";
+    document.getElementById("commute-form-driver").style.display = "block";
+    flag = "driver";
+    initMap();
+});
 
 function submitDriverEventListener(oriMarker, destMarker) {
-    $("#commute-form").submit(function (event) {
-        if ($('#driv').is(':checked')) {
+    $("#commute-form-driver").submit(function (event) {
+        if ($('#driv').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+            && $('#datetimepicker').val() !== "") {
             var locationJson = {
                 oriLng: oriMarker.position.lng(),
-                oriLat: oriMarker.position.lng(),
+                oriLat: oriMarker.position.lat(),
                 destLng: destMarker.position.lng(),
                 destLat: destMarker.position.lat()
             };
-            $(this).append('<input type="hidden" name="locJSON" value="' + JSON.stringify(locationJson) + '" />');
+            //alert("'"+JSON.stringify(locationJson)+"'");
+            var driverCoords = JSON.stringify(locationJson);
+            $(this).append('<input id="actualLocation-driver" type="hidden" name="locJSON"/>');
+            document.getElementById("actualLocation-driver").value = driverCoords;
+        }
+        else {
+            event.preventDefault();
         }
     });
 }
 
 function submitPassengerEventListener(oriMarker, destMarker) {
-    $("#submitChange").click(function (event) {
-        if (($('#pass').is(':checked')) && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
+    $("#commute-form-passenger").submit(function (event) {
+        if ($('#pass').is(':checked') && $('#input-origin').val() !== "" && $('#input-dest').val() !== ""
             && $('#datetimepicker').val() !== "") {
-            // Sending an AJAX request to /dashboard
+            var locationJson = {
+                oriLng: oriMarker.position.lng(),
+                oriLat: oriMarker.position.lat(),
+                destLng: destMarker.position.lng(),
+                destLat: destMarker.position.lat()
+            };
+            var passengerCoords = JSON.stringify(locationJson);
+            $(this).append('<input id="actualLocation-passenger" type="hidden" name="locJSON"/>');
+            document.getElementById("actualLocation-passenger").value = passengerCoords;            // Sending an AJAX request to /dashboard
             // This finds the matches in the database and returns them.
             var token = $('meta[name="csrf-token"]').attr('content');
             $.post("/dashboard",
@@ -26,41 +59,13 @@ function submitPassengerEventListener(oriMarker, destMarker) {
                 {
                     "_method": 'POST',
                     "_token": token
-                },
-                // this function runs when the call is completed.
-                function (data, status) {
-                    if (status === "success") {
-                        console.log(data.routes);
-                        if (data.routes.length === 0) {
-                            $(".modal-body").html('<div class="popwindow"><p>No routes found</p></div>');
-                        }
-                        else {
-                            $(".modal-body").html('');
-                            data.routes.forEach(function (route) {
-                                $(".modal-body").append('<h3><a href="/Routes/' + route.rideId + '">Route ID: ' + route.rideId + '</a></h3>' +
-                                    '<small>Date Time:' + route.carpoolDateTime + '</small>');
-                            })
-                        }
-                        $('#route').modal();
-                    }
-                });
+                })
         }
     });
 }
 
-document.getElementById("pass").addEventListener("click", function(){
-    document.getElementById("submitChange").type="button";
-    document.getElementById("submitChange").dataset.target = "#route";
-});
-
-document.getElementById("driv").addEventListener("click", function(){
-    document.getElementById("submitChange").type="submit";
-    document.getElementById("submitChange").dataset.target = "";
-});
-
-function initMap(){
+function initMap() {
 //user location section
-
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.28, lng: -123}, //default center around Vancouver
         zoom: 11,
@@ -69,9 +74,9 @@ function initMap(){
 
     var imageCurrent = {
         url: "../svg/dot_316742.png", // url
-        scaledSize: new google.maps.Size(30,30), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(20,20) // anchor
+        scaledSize: new google.maps.Size(30, 30), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(20, 20) // anchor
     };
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -87,36 +92,49 @@ function initMap(){
             marker.setMap(map);
             map.setCenter(pos);
         },function(){
-            alert("Location service is disabled by your browser for this website");
+            console.log("Error! Location service is disabled by your browser for this website.");
+
         });
     } else {
-        // Browser doesn't support Geolocation
-        alert("Browser doesn't support Geolocation, we are unable to get your location");
+        console.log("Error! Browser doesn't support geolocation, we are unable to get your location.");
     }
 
 
     //autocomplete section
     var origin = document.getElementById("input-origin"); //input box for origin
+    var origin_passenger = document.getElementById("input-origin-passenger"); //input box for origin
     var origin_compele = new google.maps.places.Autocomplete(origin);
+    var origin_compele_passenger = new google.maps.places.Autocomplete(origin_passenger);
+
     var destination = document.getElementById("input-dest"); //input box for destiation
+    var destination_passenger = document.getElementById("input-dest-passenger"); //input box for destiation
     var destination_compele = new google.maps.places.Autocomplete(destination);
+    var destination_compele_passenger = new google.maps.places.Autocomplete(destination_passenger);
+
 
     var initialMarkerLocation = {lat: 49.28, lng: -123};
     //initialize two markers
     var oriMarker = new google.maps.Marker({
         position: initialMarkerLocation,
-        label:'S'
+        label: 'S'
     });
+
     var originPlaced = false;
     var destMarker = new google.maps.Marker({
         position: initialMarkerLocation,
-        label:'D'
+        label: 'D'
     });
     var destPlaced = false;
 
     //event handlers
-    google.maps.event.addListener(origin_compele, 'place_changed', function(){
-        var origin_places = origin_compele.getPlace();
+    var useOri = origin_compele_passenger;
+    var useDest = destination_compele_passenger;
+    if (flag === "driver") {
+        useOri = origin_compele;
+        useDest = destination_compele;
+    }
+    google.maps.event.addListener(useOri, 'place_changed', function () {
+        var origin_places = useOri.getPlace();
         var oriPos = {
             lat: origin_places.geometry.location.lat(),
             lng: origin_places.geometry.location.lng()
@@ -135,8 +153,8 @@ function initMap(){
         originPlaced = true;
     });
 
-    google.maps.event.addListener(destination_compele, 'place_changed', function(){
-        var destination_places = destination_compele.getPlace();
+    google.maps.event.addListener(useDest, 'place_changed', function () {
+        var destination_places = useDest.getPlace();
         var destiPos = {
             lat: destination_places.geometry.location.lat(),
             lng: destination_places.geometry.location.lng()
@@ -155,6 +173,27 @@ function initMap(){
         destPlaced = true;
     });
 
-    submitDriverEventListener(oriMarker, destMarker);
-    submitPassengerEventListener(oriMarker, destMarker);
+    if (flag === "driver"){
+        submitDriverEventListener(oriMarker, destMarker);
+    }else if(flag === "passenger"){
+        submitPassengerEventListener(oriMarker, destMarker);
+    }
 }
+
+
+const fpPassenger = flatpickr("#datetimepicker-passenger", {
+    enableTime: true,
+    altInput: true,
+    altFormat: "F j, Y h:i K",
+    minDate: "today",
+    dateFormat: "U"
+});
+
+const fpDriver = flatpickr("#datetimepicker", {
+    enableTime: true,
+    altInput: true,
+    altFormat: "F j, Y h:i K",
+    minDate: "today",
+    dateFormat: "U"
+});
+

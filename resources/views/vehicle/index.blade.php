@@ -81,7 +81,7 @@
                 {!! Form::open(['action' => 'VehicleController@add', 'method' => 'POST', 'files' => true]) !!}
                     <div class="form-group">
                         {{Form::label('licenseStatus', 'License Status')}}
-                        {{Form::text('licenseStatus', '', ['class' => 'form-control'])}}
+                        {{Form::text('licenseStatus', '', ['class' => 'form-control', 'required'=>''])}}
                     </div>
                     <h2 class="text-center">Create your vehicle</h2>
                     <div class="form-group">

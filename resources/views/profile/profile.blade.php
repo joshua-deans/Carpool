@@ -49,7 +49,7 @@
                     ?>
                 </h3>
                 <h5>
-                    <a href="{{ url('profile/'.$user->id) }}">My Public Profile</a>
+                    <a href="{{ url('profile/'.$user->id) }}" class="whiteLink">My Public Profile</a>
                 </h5>
             </div>
         {{--</div>--}}
@@ -58,7 +58,12 @@
         <br><br>
         <div class="row text-center">
             <a href="profile/edit" class="btn btn-primary btn-lg profileButton">Edit</a>
-            <a href="vehicle" class="btn btn-primary btn-lg ">Driver Status</a>
+            @if($driver == true)
+                <a href="vehicle" class="btn btn-primary btn-lg ">Update Driver Info</a>
+            @else
+                <a href="vehicle" class="btn btn-primary btn-lg ">Become a Driver</a>
+            @endif
+
         </div>
     </div>
 
