@@ -17,7 +17,6 @@
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
 
-
         @if(count($members) > 0)
             <table>
                 <tr>
