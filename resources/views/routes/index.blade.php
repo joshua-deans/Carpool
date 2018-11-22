@@ -45,7 +45,21 @@
             @if (count($passenger_routes) > 0)
                 @foreach($passenger_routes as $route)
                     <div class="well">
-                        <h3><a href="/Routes/{{$route->rideId}}">route id: {{$route->rideId}}</a></h3>
+                        <h3><a href="/Routes/{{$route->rideId}}">
+                                @if($route->driverID != NULL)
+                                    <?php
+                                    $driver = null;
+                                    foreach($users as $u) {
+                                        if ($route->driverID == $u->id) {
+                                            $driver = $u;
+                                            break;
+                                        }
+                                    }
+                                    echo $driver->name;
+                                    ?>
+
+                                @endif
+                            </a></h3>
                         <small><?php echo date('Y-m-d g:i A',$route->carpoolDateTime  );?></small>
                     </div>
                 @endforeach
