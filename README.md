@@ -1,5 +1,5 @@
 # carpool.me Web Application 
-carpool.me is a web application intended to make carpool arrangements easier. 
+carpool.me is a web application that makes carpooling easier. 
 It is built using the following technologies:
 * Laravel and PHP
 * MySQL on separate DB server
@@ -12,17 +12,19 @@ It is built using the following technologies:
 
 ## Features:
 * Admin Authentication for preregistered accounts - use username: eric@admin.ca password: eric to test
-* As admin you are able to see current users and carpool sessions
-* As admin you can search for users by name
-* As admin you are able to delete users and carpool sessions
-* User registration and authentication (you are able to register, log in, and sign out)
+* As an admin:
+    * you are able to see current users and carpool sessions
+    * you can search for users by name
+    * you are able to delete users and carpool sessions
+
+* User registration and authentication 
 * Able to interact with the Google Maps API in the dashboard
 * Able to use the Google Places API to autocomplete your origin and destination
 * Able to view and edit profile information, including adding pictures to your account
-* Register as a driver by registering your license and vehicle information
-* Create routes as a driver from your preferred start and end location
+* Register as a driver by including your license and vehicle information
+* Create routes as a driver with your preferred start and end location
 * Users may browse routes that are within range of their starting/ending location
-* Users may sign up for routes based on the returned results
+* Users may sign up for routes drivers have posted
 
 ## Starting the server:
 * Project Name: CarpoolApplication
